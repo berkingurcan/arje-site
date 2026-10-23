@@ -76,9 +76,9 @@
 		filter: brightness(var(--ph-dim));
 	}
 	.ph-mark {
-		width: clamp(3.5rem, 22%, 7rem);
+		width: clamp(3rem, 18%, 6rem);
 		color: var(--m);
-		opacity: 0.55;
+		opacity: 0.45;
 	}
 	.tone-ivory {
 		--a: #f1e9dc;
@@ -150,16 +150,14 @@
 		left: 0.75rem;
 		top: 0.75rem;
 		z-index: 2;
-		padding: 0.4rem 0.6rem;
-		border-radius: var(--radius);
-		background: rgb(243 237 226 / 0.86);
+		padding: 0.35rem 0.7rem;
+		border-radius: var(--pill);
+		background: rgb(246 243 238 / 0.82);
 		-webkit-backdrop-filter: blur(8px);
 		backdrop-filter: blur(8px);
-		color: #571f2d;
-		font-size: 0.62rem;
-		font-weight: 600;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
+		color: #2e2427;
+		font-size: 0.75rem;
+		font-weight: 500;
 		line-height: 1.2;
 	}
 </style>

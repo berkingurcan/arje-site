@@ -1,231 +1,178 @@
 <script lang="ts">
-	import Wordmark from '$lib/brand/Wordmark.svelte';
 	import Monogram from '$lib/brand/Monogram.svelte';
+	import Wordmark from '$lib/brand/Wordmark.svelte';
 	import LangSwitch from './LangSwitch.svelte';
 	import ThemeToggle from './ThemeToggle.svelte';
 	import Icon from './Icon.svelte';
-	import { reveal } from '$lib/actions/reveal';
 	import { site } from '$lib/config';
 	import type { Dict, Locale } from '$lib/i18n';
 
 	let { t, locale }: { t: Dict; locale: Locale } = $props();
-
-	const links = $derived([
-		{ id: 'collection', label: t.nav.collection },
-		{ id: 'approach', label: t.nav.approach },
-		{ id: 'atelier', label: t.nav.atelier },
-		{ id: 'trade', label: t.nav.trade }
-	]);
 </script>
 
 <footer id="contact" class="footer" aria-labelledby="contact-title">
 	<div class="container">
-		<div class="top">
-			<div class="intro reveal" use:reveal>
-				<span class="mono" aria-hidden="true"><Monogram /></span>
-				<p class="tagline">{t.footer.tagline}</p>
+		<div class="main">
+			<div class="sign" role="img" aria-label="ARJE">
+				<span class="mark"><Monogram /></span>
+				<span class="wm"><Wordmark decorative /></span>
 			</div>
 
-			<div class="cols">
-				<div class="col reveal" use:reveal style="--d:1">
-					<h2 id="contact-title" class="col-title">{t.footer.contactTitle}</h2>
-					<p class="small muted">{t.footer.emailLabel}</p>
-					<a class="email" href="mailto:{site.email}">{site.email}</a>
-					{#if site.instagram}
-						<a class="ig link" href={site.instagram} rel="noopener" target="_blank">Instagram <Icon name="arrow" class="arrow" /></a>
-					{/if}
-				</div>
-
-				<nav class="col reveal" use:reveal style="--d:2" aria-label={t.footer.exploreTitle}>
-					<h2 class="col-title">{t.footer.exploreTitle}</h2>
-					<ul>
-						{#each links as l (l.id)}
-							<li><a href="#{l.id}">{l.label}</a></li>
-						{/each}
-					</ul>
-				</nav>
-
-				<div class="col prefs reveal" use:reveal style="--d:3">
-					<h2 class="col-title">{t.ui.language} &amp; {t.ui.theme}</h2>
-					<LangSwitch {locale} label={t.a11y.language} variant="segmented" />
-					<ThemeToggle {t} variant="segmented" />
-				</div>
+			<div class="reach">
+				<h2 id="contact-title" class="label">{t.footer.emailNote}</h2>
+				<a class="email" href="mailto:{site.email}">{site.email}</a>
+				<ul class="social" aria-label={t.footer.follow}>
+					{#each site.social as s (s.name)}
+						<li>
+							<a href={s.url} target="_blank" rel="noopener noreferrer">
+								<Icon name={s.icon} />
+								<span>{s.name}</span>
+							</a>
+						</li>
+					{/each}
+				</ul>
 			</div>
 		</div>
 
-		<div class="giant reveal" use:reveal>
-			<div class="curtain"><Wordmark decorative /></div>
-			<p class="by">by Mimar Arzu Gürcan</p>
-		</div>
-
-		<div class="bottom">
-			<p>© {site.year} ARJE. {t.footer.rights}</p>
-			<p>{t.attributionLead}: {t.attribution}</p>
-			<p class="credit">{t.footer.credit}</p>
-			<a class="top-link" href="#main">
-				{t.a11y.backToTop}
-				<span class="up"><Icon name="arrow" /></span>
-			</a>
+		<div class="base">
+			<p class="legal">
+				<span>© {site.year} ARJE</span>
+				<span>{t.attributionLead} {t.attribution}</span>
+				<span class="credit">{t.footer.credit}</span>
+			</p>
+			<div class="prefs">
+				<LangSwitch {locale} label={t.a11y.language} />
+				<ThemeToggle {t} />
+				<a class="top" href="#main" aria-label={t.a11y.backToTop}><Icon name="arrow-up" /></a>
+			</div>
 		</div>
 	</div>
 </footer>
 
 <style>
 	.footer {
-		padding-top: var(--section);
-		padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+		padding-top: clamp(4rem, 9vw, 7rem);
+		padding-bottom: calc(1rem + env(safe-area-inset-bottom));
 		border-top: 1px solid var(--line);
 	}
 
-	.top {
+	.main {
 		display: grid;
 		gap: 3rem;
+		padding-bottom: clamp(3rem, 7vw, 5.5rem);
 	}
-	.mono {
-		display: block;
-		width: 3.5rem;
-		color: var(--ink);
-		margin-bottom: 1.5rem;
+	.sign {
+		display: flex;
+		align-items: flex-end;
+		gap: 1.25rem;
 	}
-	.tagline {
-		font-family: var(--font-display);
-		font-style: italic;
-		font-size: clamp(2rem, 4vw, 3.25rem);
-		line-height: 1.05;
+	.mark {
+		width: clamp(3.4rem, 6vw, 5.25rem);
+		flex: none;
 		color: var(--ink);
-		max-width: 14ch;
+	}
+	.wm {
+		width: clamp(9rem, 22vw, 17rem);
+		color: var(--ink);
+		padding-bottom: 0.2rem;
 	}
 
-	.cols {
+	.reach {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 2.5rem 1.5rem;
-	}
-	.col {
-		display: grid;
-		align-content: start;
-		gap: 0.6rem;
-	}
-	.col:first-child,
-	.prefs {
-		grid-column: 1 / -1;
-	}
-	.col-title {
-		font-size: 0.75rem;
-		font-weight: 600;
-		letter-spacing: 0.16em;
-		text-transform: uppercase;
-		color: var(--ink);
-		margin-bottom: 0.4rem;
-	}
-	.small {
-		font-size: var(--fs-small);
+		justify-items: start;
+		gap: 0.5rem;
 	}
 	.email {
 		font-family: var(--font-display);
-		font-size: clamp(1.5rem, 2.4vw, 1.9rem);
-		line-height: 1.2;
+		font-weight: 300;
+		font-stretch: var(--display-stretch);
+		font-size: clamp(2rem, 4.4vw, 3.6rem);
+		line-height: 1.1;
+		letter-spacing: -0.01em;
 		color: var(--ink);
-		width: fit-content;
-		background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
-		transition: background-size 400ms var(--ease-out);
 		overflow-wrap: anywhere;
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.18em;
+		text-decoration-color: var(--line-strong);
+		transition: text-decoration-color var(--fast) var(--ease);
 	}
 	.email:hover {
-		background-size: 0 1px;
-		background-position-x: 100%;
+		text-decoration-color: currentColor;
 	}
-	.col ul a {
+	.social {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem 1.5rem;
+		margin-top: 0.75rem;
+	}
+	.social a {
 		display: inline-flex;
 		align-items: center;
-		min-height: 2.5rem;
+		gap: 0.5rem;
+		min-height: var(--target);
+		font-size: 0.9375rem;
 		color: var(--text);
 		transition: color var(--fast) var(--ease);
 	}
-	.col ul a:hover {
+	.social a:hover {
 		color: var(--ink);
-		text-decoration: underline;
-		text-underline-offset: 4px;
 	}
-	.prefs {
-		max-width: 22rem;
-		gap: 0.75rem;
+	.social :global(.icon) {
+		width: 1.15rem;
+		height: 1.15rem;
 	}
 
-	.giant {
-		margin-top: clamp(4rem, 10vw, 8rem);
-		color: var(--ink);
-	}
-	.by {
-		margin-top: clamp(0.75rem, 2vw, 1.5rem);
-		text-align: center;
-		font-size: clamp(0.75rem, 1.4vw, 1rem);
-		font-weight: 600;
-		letter-spacing: 0.32em;
-		text-transform: uppercase;
-		color: var(--ink);
-	}
-
-	.bottom {
-		display: grid;
-		gap: 0.35rem;
-		margin-top: clamp(3rem, 6vw, 5rem);
-		padding-top: 1.25rem;
+	.base {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.5rem 2rem;
+		padding-top: 0.75rem;
 		border-top: 1px solid var(--line);
-		font-size: 0.8125rem;
+	}
+	.legal {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem 1.5rem;
+		font-size: var(--fs-meta);
 		color: var(--muted);
 	}
-	.top-link {
-		display: inline-flex;
+	.prefs {
+		display: flex;
 		align-items: center;
-		gap: 0.6rem;
-		min-height: var(--target);
-		width: fit-content;
-		font-size: 0.75rem;
-		font-weight: 600;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-		color: var(--ink);
+		gap: 0.25rem;
+		margin-right: -0.5rem;
 	}
-	.up {
+	.top {
 		display: grid;
 		place-items: center;
-		width: 2.25rem;
-		height: 2.25rem;
+		width: var(--target);
+		height: var(--target);
 		border-radius: 50%;
-		box-shadow: inset 0 0 0 1px var(--line-strong);
-		transform: rotate(-90deg);
-		transition: transform 400ms var(--ease-out);
+		color: var(--ink);
+		transition: background-color var(--fast) var(--ease);
 	}
-	.up :global(.icon) {
-		width: 1rem;
+	.top:hover {
+		background: color-mix(in srgb, var(--ink) 7%, transparent);
 	}
-	.top-link:hover .up {
-		transform: rotate(-90deg) translateX(3px);
-	}
-
-	@media (min-width: 48rem) {
-		.cols {
-			grid-template-columns: 1.3fr 1fr 1.2fr;
-		}
-		.col:first-child,
-		.prefs {
-			grid-column: auto;
-		}
-		.bottom {
-			grid-template-columns: auto auto 1fr auto;
-			align-items: center;
-			gap: 2rem;
-		}
-		.credit {
-			text-align: right;
-		}
+	.top :global(.icon) {
+		width: 1.1rem;
+		height: 1.1rem;
 	}
 
 	@media (min-width: 64rem) {
-		.top {
-			grid-template-columns: 5fr 7fr;
-			gap: var(--gutter);
+		.main {
+			grid-template-columns: repeat(12, minmax(0, 1fr));
+			column-gap: var(--gutter);
+			align-items: end;
+		}
+		.sign {
+			grid-column: 1 / span 5;
+		}
+		.reach {
+			grid-column: 7 / -1;
 		}
 	}
 </style>

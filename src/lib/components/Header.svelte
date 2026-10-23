@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount, tick } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
+	import Monogram from '$lib/brand/Monogram.svelte';
 	import Wordmark from '$lib/brand/Wordmark.svelte';
 	import LangSwitch from './LangSwitch.svelte';
 	import ThemeToggle from './ThemeToggle.svelte';
@@ -11,7 +12,6 @@
 	const links = $derived([
 		{ id: 'collection', label: t.nav.collection },
 		{ id: 'approach', label: t.nav.approach },
-		{ id: 'atelier', label: t.nav.atelier },
 		{ id: 'trade', label: t.nav.trade },
 		{ id: 'contact', label: t.nav.contact }
 	]);
@@ -29,7 +29,7 @@
 			const y = scrollY;
 			scrolled = y > 8;
 			if (Math.abs(y - lastY) > 6) {
-				hidden = y > lastY && y > 320;
+				hidden = y > lastY && y > 480;
 				lastY = y;
 			}
 			ticking = false;
@@ -91,8 +91,8 @@
 <header class="header" class:scrolled class:hidden={hidden && !open} class:open>
 	<div class="bar container">
 		<a class="brand" href={localeInfo[locale].path} aria-label={t.a11y.home}>
+			<span class="symbol"><Monogram small /></span>
 			<span class="wm"><Wordmark decorative /></span>
-			<span class="sig" aria-hidden="true">by Mimar Arzu Gürcan</span>
 		</a>
 
 		<nav class="primary" aria-label={t.a11y.mainNav}>
@@ -105,8 +105,8 @@
 
 		<div class="tools">
 			<div class="desk-only"><LangSwitch {locale} label={t.a11y.language} /></div>
-			<span class="divider desk-only" aria-hidden="true"></span>
 			<ThemeToggle {t} />
+			<a class="btn btn-sm desk-only enquire" href="#trade">{t.ui.enquire}</a>
 			<button
 				bind:this={menuBtn}
 				class="menu-btn"
@@ -116,7 +116,6 @@
 				aria-label={open ? t.a11y.menuClose : t.a11y.menuOpen}
 				onclick={() => setOpen(!open)}
 			>
-				<span class="menu-label" aria-hidden="true">{open ? t.ui.close : t.ui.menu}</span>
 				<span class="burger" aria-hidden="true"><i></i><i></i></span>
 			</button>
 		</div>
@@ -126,33 +125,22 @@
 <div id="mobile-menu" class="sheet" class:open inert={!open} aria-label={t.ui.menu} role="dialog" aria-modal="true">
 	<div class="sheet-inner container">
 		<nav aria-label={t.a11y.mainNav}>
-			<ol>
+			<ul>
 				{#each links as l, i (l.id)}
 					<li style="--i:{i}">
 						{#if i === 0}
-							<a bind:this={firstLink} href="#{l.id}" onclick={(e) => go(e, l.id)}>
-								<span class="idx num">0{i + 1}</span><span class="txt">{l.label}</span>
-							</a>
+							<a bind:this={firstLink} href="#{l.id}" onclick={(e) => go(e, l.id)}>{l.label}</a>
 						{:else}
-							<a href="#{l.id}" onclick={(e) => go(e, l.id)}>
-								<span class="idx num">0{i + 1}</span><span class="txt">{l.label}</span>
-							</a>
+							<a href="#{l.id}" onclick={(e) => go(e, l.id)}>{l.label}</a>
 						{/if}
 					</li>
 				{/each}
-			</ol>
+			</ul>
 		</nav>
 
-		<div class="sheet-foot" style="--i:5">
-			<div class="ctl">
-				<span class="label">{t.ui.language}</span>
-				<LangSwitch {locale} label={t.a11y.language} variant="segmented" />
-			</div>
-			<div class="ctl">
-				<span class="label">{t.ui.theme}</span>
-				<ThemeToggle {t} variant="segmented" />
-			</div>
-			<p class="sheet-sig">ARJE · by Mimar Arzu Gürcan</p>
+		<div class="sheet-foot" style="--i:4">
+			<LangSwitch {locale} label={t.a11y.language} variant="segmented" />
+			<ThemeToggle {t} variant="segmented" />
 		</div>
 	</div>
 </div>
@@ -163,7 +151,8 @@
 		left: 1rem;
 		top: 0.75rem;
 		z-index: 200;
-		padding: 0.75rem 1rem;
+		padding: 0.75rem 1.1rem;
+		border-radius: var(--pill);
 		background: var(--btn-bg);
 		color: var(--btn-fg);
 		font-size: 0.875rem;
@@ -187,13 +176,12 @@
 	}
 	.header.scrolled {
 		background: var(--header-bg);
-		-webkit-backdrop-filter: saturate(1.2) blur(18px);
-		backdrop-filter: saturate(1.2) blur(18px);
+		-webkit-backdrop-filter: blur(16px);
+		backdrop-filter: blur(16px);
 		box-shadow: 0 1px 0 var(--line);
 	}
 	.header.open {
 		background: var(--bg);
-		box-shadow: 0 1px 0 var(--line);
 		-webkit-backdrop-filter: none;
 		backdrop-filter: none;
 	}
@@ -209,27 +197,21 @@
 		gap: 1rem;
 	}
 
+	/* Symbol + wordmark lockup */
 	.brand {
 		display: flex;
 		align-items: center;
-		gap: 1rem;
+		gap: 0.7rem;
 		min-height: var(--target);
 		color: var(--ink);
 	}
-	.wm {
-		width: 5.75rem;
+	.symbol {
+		width: 1.9rem;
+		color: var(--ink);
 	}
-	.sig {
-		display: none;
-		padding-left: 1rem;
-		border-left: 1px solid var(--line-strong);
-		font-size: 0.66rem;
-		font-weight: 600;
-		letter-spacing: 0.16em;
-		text-transform: uppercase;
-		line-height: 1;
-		white-space: nowrap;
-		color: var(--muted);
+	.wm {
+		width: 4.4rem;
+		padding-top: 0.15rem;
 	}
 
 	.primary {
@@ -237,71 +219,51 @@
 	}
 	.primary ul {
 		display: flex;
-		gap: clamp(1.25rem, 2.4vw, 2.5rem);
+		gap: 0.25rem;
 	}
 	.primary a {
-		position: relative;
 		display: inline-flex;
 		align-items: center;
-		min-height: var(--target);
-		font-size: 0.72rem;
-		font-weight: 600;
-		letter-spacing: 0.16em;
-		text-transform: uppercase;
-		color: var(--ink);
+		min-height: 2.5rem;
+		padding-inline: 0.9rem;
+		border-radius: var(--pill);
+		font-size: 0.9375rem;
+		font-weight: 450;
+		color: var(--text);
 		white-space: nowrap;
+		transition:
+			background-color var(--fast) var(--ease),
+			color var(--fast) var(--ease);
 	}
-	.primary a::after {
-		content: '';
-		position: absolute;
-		left: 0;
-		right: 0;
-		bottom: 0.75rem;
-		height: 1px;
-		background: currentColor;
-		transform: scaleX(0);
-		transform-origin: right;
-		transition: transform 450ms var(--ease-out);
-	}
-	.primary a:hover::after {
-		transform: scaleX(1);
-		transform-origin: left;
+	.primary a:hover {
+		background: color-mix(in srgb, var(--ink) 7%, transparent);
+		color: var(--ink);
 	}
 
 	.tools {
 		display: flex;
 		align-items: center;
-		gap: 0.25rem;
-		margin-right: -0.6rem;
+		gap: 0.35rem;
+		margin-right: -0.5rem;
 	}
 	.desk-only {
 		display: none;
 	}
-	.divider {
-		width: 1px;
-		height: 1.25rem;
-		background: var(--line-strong);
-		margin-inline: 0.35rem;
+	.enquire {
+		margin-left: 0.4rem;
 	}
 
 	.menu-btn {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.75rem;
-		min-height: var(--target);
-		padding-inline: 0.6rem;
+		display: grid;
+		place-items: center;
+		width: var(--target);
+		height: var(--target);
 		color: var(--ink);
-	}
-	.menu-label {
-		font-size: 0.72rem;
-		font-weight: 600;
-		letter-spacing: 0.16em;
-		text-transform: uppercase;
 	}
 	.burger {
 		position: relative;
-		width: 1.4rem;
-		height: 0.6rem;
+		width: 1.35rem;
+		height: 0.55rem;
 	}
 	.burger i {
 		position: absolute;
@@ -309,7 +271,7 @@
 		right: 0;
 		height: 1.25px;
 		background: currentColor;
-		transition: transform 500ms var(--ease-out);
+		transition: transform 450ms var(--ease-out);
 	}
 	.burger i:first-child {
 		top: 0;
@@ -318,10 +280,10 @@
 		bottom: 0;
 	}
 	.open .burger i:first-child {
-		transform: translateY(0.27rem) rotate(20deg);
+		transform: translateY(0.25rem) rotate(45deg);
 	}
 	.open .burger i:last-child {
-		transform: translateY(-0.27rem) rotate(-20deg);
+		transform: translateY(-0.25rem) rotate(-45deg);
 	}
 
 	/* ---------- Mobile sheet ---------- */
@@ -335,16 +297,16 @@
 		overflow-y: auto;
 		overscroll-behavior: contain;
 		visibility: hidden;
-		clip-path: inset(0 0 100% 0);
+		opacity: 0;
 		transition:
-			clip-path 700ms var(--ease-out),
-			visibility 0s linear 700ms;
+			opacity 350ms var(--ease),
+			visibility 0s linear 350ms;
 	}
 	.sheet.open {
 		visibility: visible;
-		clip-path: inset(0 0 0 0);
+		opacity: 1;
 		transition:
-			clip-path 700ms var(--ease-out),
+			opacity 350ms var(--ease),
 			visibility 0s;
 	}
 	.sheet-inner {
@@ -353,82 +315,48 @@
 		flex-direction: column;
 		justify-content: space-between;
 		gap: 2.5rem;
-		padding-block: clamp(1.5rem, 6svh, 3rem) 1.5rem;
+		padding-block: clamp(1.5rem, 5svh, 2.5rem) 1.5rem;
 	}
-	.sheet ol li,
+	.sheet ul li,
 	.sheet-foot {
 		opacity: 0;
-		transform: translateY(1.25rem);
+		transform: translateY(0.75rem);
 		transition:
-			opacity 500ms var(--ease-out),
-			transform 700ms var(--ease-out);
+			opacity 400ms var(--ease-out),
+			transform 600ms var(--ease-out);
 	}
-	.sheet.open ol li,
+	.sheet.open ul li,
 	.sheet.open .sheet-foot {
 		opacity: 1;
 		transform: none;
-		transition-delay: calc(150ms + var(--i) * 60ms);
+		transition-delay: calc(80ms + var(--i) * 50ms);
 	}
-	.sheet ol {
-		border-top: 1px solid var(--line);
-	}
-	.sheet ol li {
-		border-bottom: 1px solid var(--line);
-	}
-	.sheet ol a {
-		display: flex;
-		align-items: baseline;
-		gap: 1.25rem;
-		padding-block: 1rem;
-		color: var(--ink);
-	}
-	.idx {
-		font-size: 0.7rem;
-		font-weight: 600;
-		letter-spacing: 0.14em;
-		color: var(--muted);
-		min-width: 1.5rem;
-	}
-	.txt {
+	.sheet ul a {
+		display: block;
+		padding-block: 0.35rem;
 		font-family: var(--font-display);
-		font-size: clamp(2.1rem, 9.5vw, 3rem);
-		font-weight: 450;
+		font-weight: 300;
+		font-stretch: var(--display-stretch);
+		font-size: clamp(2.6rem, 12vw, 3.6rem);
 		line-height: 1.05;
-		letter-spacing: -0.01em;
+		letter-spacing: -0.015em;
+		color: var(--ink);
 	}
 	.sheet-foot {
 		display: grid;
-		gap: 1.5rem;
-	}
-	.ctl {
-		display: grid;
-		gap: 0.6rem;
-	}
-	.ctl .label {
-		color: var(--muted);
-	}
-	.sheet-sig {
-		font-size: 0.68rem;
-		font-weight: 600;
-		letter-spacing: 0.16em;
-		text-transform: uppercase;
-		color: var(--muted);
-		padding-top: 0.5rem;
-	}
-
-	@media (min-width: 48rem) {
-		.wm {
-			width: 6.5rem;
-		}
+		gap: 0.75rem;
 	}
 
 	@media (min-width: 64rem) {
 		:global(:root) {
-			--header-h: 5rem;
+			--header-h: 4.75rem;
 		}
 		.primary,
 		.desk-only {
 			display: block;
+		}
+		.enquire {
+			display: inline-flex;
 		}
 		.menu-btn,
 		.sheet {
@@ -440,12 +368,13 @@
 		}
 		.tools {
 			justify-self: end;
+			margin-right: 0;
 		}
-	}
-
-	@media (min-width: 80rem) {
-		.sig {
-			display: inline-block;
+		.symbol {
+			width: 2.1rem;
+		}
+		.wm {
+			width: 4.75rem;
 		}
 	}
 </style>

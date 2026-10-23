@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Media from './Media.svelte';
-	import { reveal } from '$lib/actions/reveal';
 	import { media } from '$lib/media';
 	import type { Dict } from '$lib/i18n';
 
@@ -9,15 +8,12 @@
 
 <section class="section insitu" aria-labelledby="insitu-title">
 	<div class="container">
-		<div class="head reveal" use:reveal>
-			<p class="label rule">{t.inSitu.eyebrow}</p>
-			<h2 id="insitu-title" class="h2"><span class="rise"><span>{t.inSitu.title}</span></span></h2>
-		</div>
+		<h2 id="insitu-title" class="h2 head">{t.inSitu.title}</h2>
 
 		<div class="mosaic">
 			{#each media.inSitu as item, i (i)}
-				<figure class="tile t{i} reveal" use:reveal style="--d:{i}">
-					<div class="curtain" style="--d:{i}">
+				<figure class="tile t{i}">
+					<div>
 						<Media
 							{item}
 							alt={t.alt.inSitu[i]}
@@ -25,10 +21,7 @@
 							sizes={i === 0 ? '(min-width: 64rem) 58vw, 100vw' : '(min-width: 64rem) 28vw, 50vw'}
 						/>
 					</div>
-					<figcaption>
-						<span class="num">0{i + 1}</span>
-						<span>{t.inSitu.captions[i]}</span>
-					</figcaption>
+					<figcaption class="label">{t.inSitu.captions[i]}</figcaption>
 				</figure>
 			{/each}
 		</div>
@@ -37,16 +30,17 @@
 
 <style>
 	.head {
-		display: grid;
-		gap: 1.25rem;
-		max-width: 52rem;
-		margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+		max-width: 17ch;
+		margin-bottom: clamp(2.5rem, 6vw, 5rem);
+	}
+	:global(html[lang='ru']) .head {
+		max-width: 18ch;
 	}
 
 	.mosaic {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		gap: clamp(0.75rem, 2vw, 1.75rem);
+		gap: clamp(0.75rem, 1.6vw, 1.5rem);
 	}
 	.t0 {
 		grid-column: 1 / -1;
@@ -58,19 +52,8 @@
 	.t2 {
 		margin-top: 3rem;
 	}
-
 	figcaption {
-		display: flex;
-		gap: 0.75rem;
-		margin-top: 0.75rem;
-		font-size: 0.75rem;
-		font-weight: 600;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-		color: var(--muted);
-	}
-	figcaption .num {
-		color: var(--accent);
+		margin-top: 0.7rem;
 	}
 
 	@media (min-width: 48rem) {
@@ -100,7 +83,6 @@
 		.t1 {
 			grid-column: 9 / -1;
 			grid-row: 1;
-			margin-top: 0;
 		}
 		.t2 {
 			grid-column: 8 / span 3;

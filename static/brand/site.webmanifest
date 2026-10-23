@@ -1,22 +1,13 @@
 {
-  "name": "ARJE by Mimar Arzu G\u00fcrcan",
+  "name": "ARJE",
   "short_name": "ARJE",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#F3EDE2",
-  "theme_color": "#233D32",
+  "background_color": "#EEEAE3",
+  "theme_color": "#571F2D",
   "icons": [
-    {
-      "src": "/brand/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/brand/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    }
+    { "src": "/brand/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/brand/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/brand/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }

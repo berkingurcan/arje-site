@@ -12,6 +12,7 @@
 	<ul>
 		{#each locales as l (l)}
 			<li>
+				<!-- Preloaded eagerly so a tap swaps the copy immediately, with no fetch on click. -->
 				<a
 					href={localeInfo[l].path}
 					hreflang={localeInfo[l].hreflang}
@@ -19,6 +20,8 @@
 					aria-current={l === locale ? 'true' : undefined}
 					data-sveltekit-noscroll
 					data-sveltekit-replacestate
+					data-sveltekit-preload-code="eager"
+					data-sveltekit-preload-data="eager"
 				>
 					<span aria-hidden="true">{localeInfo[l].short}</span>
 					<span class="sr-only">{localeInfo[l].label}</span>
@@ -34,14 +37,13 @@
 		align-items: center;
 	}
 	a {
-		position: relative;
 		display: grid;
 		place-items: center;
-		min-width: var(--target);
+		min-width: 2.25rem;
 		min-height: var(--target);
-		font-size: 0.72rem;
-		font-weight: 600;
-		letter-spacing: 0.14em;
+		font-size: 0.8125rem;
+		font-weight: 500;
+		letter-spacing: 0.02em;
 		color: var(--muted);
 		transition: color var(--fast) var(--ease);
 	}
@@ -49,36 +51,25 @@
 	a[aria-current='true'] {
 		color: var(--ink);
 	}
-
-	/* inline: TR · EN · RU with a fine underline on the active one */
-	.inline a::after {
-		content: '';
-		position: absolute;
-		left: 50%;
-		bottom: 0.7rem;
-		width: 1rem;
-		height: 1px;
-		background: currentColor;
-		transform: translateX(-50%) scaleX(0);
-		transition: transform 300ms var(--ease-out);
-	}
-	.inline a[aria-current='true']::after {
-		transform: translateX(-50%) scaleX(1);
+	.inline a[aria-current='true'] span:first-child {
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.4em;
 	}
 
-	/* segmented: used in the mobile menu and footer */
+	/* segmented: mobile menu and footer */
 	.segmented ul {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
-		border: 1px solid var(--line-strong);
-		border-radius: var(--radius);
-		padding: 3px;
-		gap: 3px;
+		padding: 4px;
+		gap: 4px;
+		border-radius: var(--pill);
+		box-shadow: inset 0 0 0 1px var(--line-strong);
 	}
 	.segmented a {
-		min-height: 2.75rem;
-		border-radius: 1px;
-		font-size: 0.75rem;
+		min-height: 2.6rem;
+		border-radius: var(--pill);
+		font-size: 0.875rem;
 	}
 	.segmented a[aria-current='true'] {
 		background: var(--ink);

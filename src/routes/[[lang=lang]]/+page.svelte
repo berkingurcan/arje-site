@@ -5,7 +5,6 @@
 	import Manifesto from '$lib/components/Manifesto.svelte';
 	import Collection from '$lib/components/Collection.svelte';
 	import Approach from '$lib/components/Approach.svelte';
-	import Atelier from '$lib/components/Atelier.svelte';
 	import InSitu from '$lib/components/InSitu.svelte';
 	import Trade from '$lib/components/Trade.svelte';
 	import Footer from '$lib/components/Footer.svelte';
@@ -26,7 +25,7 @@
 			url: site.url,
 			logo: `${site.url}/brand/icon-512.png`,
 			description: t.meta.description,
-			founder: { '@type': 'Person', name: 'Arzu Gürcan', jobTitle: t.atelier.role }
+			founder: { '@type': 'Person', name: 'Arzu Gürcan', jobTitle: 'Architect' }
 		})
 	);
 
@@ -68,7 +67,6 @@
 	<Manifesto {t} />
 	<Collection {t} />
 	<Approach {t} />
-	<Atelier {t} />
 	<InSitu {t} />
 	<Trade {t} />
 </main>

@@ -14,17 +14,19 @@ export type MediaItem = {
 };
 
 export const media = {
-	hero: { src: 'photo-1601993957728-1e56ab70c5a8', tone: 'stone', focus: '50% 60%' },
+	/** ARJE product photography (static/images/products, generated from assets/products). */
+	hero: { src: '/images/products/duvar', tone: 'clay', focus: '50% 45%' },
+	/** Same order as `collection.items` in each language file. */
 	objects: [
-		{ src: 'photo-1612196808214-b8e1d6145a8c', tone: 'sand' },
-		{ src: 'photo-1660721671073-e139688fa3cf', tone: 'ivory' },
-		{ src: 'photo-1537948756265-406a522f1a45', tone: 'clay' },
-		{ src: 'photo-1631125915902-d8abe9225ff2', tone: 'stone' },
-		{ src: 'photo-1638303322580-5e6aacd59c0d', tone: 'sand' }
+		{ src: '/images/products/masa', tone: 'stone', focus: '50% 55%' },
+		{ src: '/images/products/duvar', tone: 'clay', focus: '50% 45%' },
+		{ src: '/images/products/renko', tone: 'sand', focus: '50% 50%' },
+		{ src: '/images/products/saksi', tone: 'ivory', focus: '50% 45%' },
+		{ src: '/images/products/kitap', tone: 'ivory', focus: '55% 70%' },
+		{ src: '/images/products/bahce', tone: 'stone', focus: '50% 60%' }
 	],
 	approach: { src: 'photo-1759507058804-cc729b38d1ed', tone: 'stone' },
 	approachDetail: { src: 'photo-1597696929736-6d13bed8e6a8', tone: 'clay' },
-	atelierSketch: { src: 'photo-1503387762-592deb58ef4e', tone: 'ivory' },
 	inSitu: [
 		{ src: 'photo-1583847268964-b28dc8f51f92', tone: 'sand' },
 		{ src: 'photo-1758974782657-e5ada4b01c3c', tone: 'clay' },
@@ -34,8 +36,20 @@ export const media = {
 
 const WIDTHS = [480, 720, 960, 1280, 1680, 2200];
 
+const LOCAL_WIDTHS = [640, 1000, 1400];
+
+/** True for ARJE's own photography (as opposed to temporary stock imagery). */
+export const isOwn = (src: string) => src.startsWith('/');
+
 /** Build src / srcset for a media item at a given aspect ratio (w/h). */
 export function imageSet(src: string, ratio: number) {
+	// Local path without an extension → responsive WebP set: name-640/1000/1400.webp
+	if (src.startsWith('/') && !/\.[a-z0-9]+$/i.test(src)) {
+		return {
+			src: `${src}-1000.webp`,
+			srcset: LOCAL_WIDTHS.map((w) => `${src}-${w}.webp ${w}w`).join(', ')
+		};
+	}
 	if (src.startsWith('/')) return { src, srcset: undefined };
 	const url = (w: number) =>
 		`https://images.unsplash.com/${src}?w=${w}&h=${Math.round(w / ratio)}&fit=crop&auto=format&q=72`;

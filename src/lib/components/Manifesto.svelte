@@ -1,95 +1,59 @@
 <script lang="ts">
-	import { reveal } from '$lib/actions/reveal';
 	import type { Dict } from '$lib/i18n';
 
 	let { t }: { t: Dict } = $props();
 </script>
 
-<section id="manifesto" class="section manifesto" aria-label={t.manifesto.eyebrow}>
+<section id="manifesto" class="section manifesto" aria-labelledby="manifesto-title">
 	<div class="container">
-		<p class="label rule head reveal" use:reveal>{t.manifesto.eyebrow}</p>
-
-		<ol class="rows">
+		<h2 id="manifesto-title" class="sr-only">{t.manifesto.eyebrow}</h2>
+		<ul class="cols">
 			{#each t.manifesto.items as item, i (i)}
-				<li class="row reveal" use:reveal>
-					<span class="no num" aria-hidden="true">0{i + 1}</span>
-					<h2 class="word display">
-						<span class="rise"><span>{item.word}</span></span>
-					</h2>
+				<li class="col">
+					<h3 class="word display">{item.word}</h3>
 					<p class="text">{item.text}</p>
 				</li>
 			{/each}
-		</ol>
+		</ul>
 	</div>
 </section>
 
 <style>
 	.manifesto {
-		padding-top: clamp(3rem, 7vw, 6rem);
-	}
-	.head {
-		margin-bottom: clamp(2rem, 5vw, 4rem);
-	}
-	.rows {
+		padding-top: clamp(4rem, 9vw, 8rem);
 		border-top: 1px solid var(--line);
 	}
-	.row {
+	.cols {
 		display: grid;
-		grid-template-columns: auto 1fr;
-		column-gap: 1rem;
-		row-gap: 0.75rem;
-		padding-block: clamp(1.75rem, 4vw, 3rem);
-		border-bottom: 1px solid var(--line);
-	}
-	.no {
-		font-size: 0.75rem;
-		font-weight: 600;
-		letter-spacing: 0.14em;
-		color: var(--accent);
-		padding-top: 0.6rem;
-		min-width: 1.75rem;
+		gap: clamp(2.5rem, 6vw, 3.5rem);
 	}
 	.word {
-		font-size: clamp(3rem, 12.5vw, 6.5rem);
+		overflow-wrap: normal;
+		font-size: clamp(3.4rem, 15vw, 5rem);
 		line-height: 0.95;
-		letter-spacing: -0.03em;
-	}
-	.row:nth-child(2) .word {
-		font-style: italic;
-		font-weight: 400;
+		margin-bottom: 1.1rem;
 	}
 	.text {
-		grid-column: 2;
-		max-width: 26rem;
+		max-width: 22rem;
 		color: var(--muted);
 		text-wrap: pretty;
 	}
 
-	@media (min-width: 64rem) {
-		.word {
-			font-size: clamp(5rem, 8vw, 9.5rem);
-		}
-		.row {
-			grid-template-columns: 4rem minmax(0, 1fr) minmax(0, 20rem);
-			align-items: end;
+	@media (min-width: 48rem) {
+		.cols {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
 			column-gap: var(--gutter);
 		}
-		.no {
-			align-self: start;
-			padding-top: 1.25rem;
+		.word {
+			font-size: clamp(2.6rem, 5.5vw, 7rem);
+			margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
 		}
-		.text {
-			grid-column: 3;
-			padding-bottom: 0.9rem;
+		.col + .col {
+			padding-left: var(--gutter);
+			border-left: 1px solid var(--line);
 		}
 	}
-
-	@media (min-width: 64rem) {
-		.row:nth-child(2) .word {
-			padding-left: 8%;
-		}
-		.row:nth-child(3) .word {
-			padding-left: 16%;
-		}
+	:global(html[lang='ru']) .word {
+		font-size: clamp(2.3rem, 4.6vw, 5.75rem);
 	}
 </style>

@@ -78,22 +78,20 @@
 	.segmented {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		gap: 3px;
-		padding: 3px;
-		border: 1px solid var(--line-strong);
-		border-radius: var(--radius);
+		gap: 4px;
+		padding: 4px;
+		border-radius: var(--pill);
+		box-shadow: inset 0 0 0 1px var(--line-strong);
 	}
 	.segmented button {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
 		gap: 0.5rem;
-		min-height: 2.75rem;
-		border-radius: 1px;
-		font-size: 0.75rem;
-		font-weight: 600;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
+		min-height: 2.6rem;
+		border-radius: var(--pill);
+		font-size: 0.875rem;
+		font-weight: 500;
 		color: var(--muted);
 	}
 	.segmented button :global(.icon) {

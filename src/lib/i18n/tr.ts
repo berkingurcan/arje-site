@@ -28,12 +28,12 @@ const tr = {
 		themeLight: 'Açık',
 		themeDark: 'Koyu',
 		theme: 'Tema',
-		language: 'Dil'
+		language: 'Dil',
+		enquire: 'Talep gönderin'
 	},
 	nav: {
 		collection: 'Koleksiyon',
 		approach: 'Yaklaşım',
-		atelier: 'Atölye',
 		trade: 'Mimarlar İçin',
 		contact: 'İletişim'
 	},
@@ -49,7 +49,7 @@ const tr = {
 		lead: 'Heykelsi formlar, kalıcı çizgiler. Mimar Arzu Gürcan’dan eve dair kişisel bir yorum.',
 		ctaPrimary: 'Koleksiyonu keşfedin',
 		ctaSecondary: 'Mimarlar için',
-		caption: 'İlk koleksiyon · Hazırlanıyor',
+		caption: 'İlk koleksiyon hazırlanıyor',
 		scroll: 'Aşağı kaydırın'
 	},
 	manifesto: {
@@ -72,17 +72,18 @@ const tr = {
 	collection: {
 		eyebrow: 'Koleksiyon',
 		title: 'Seçili nesneler',
-		note: 'İlk koleksiyon hazırlanıyor. Buradaki görseller temsilîdir; ürün fotoğrafları çok yakında burada.',
+		note: 'İlk koleksiyon hazırlanıyor. Fiyat, ölçü ve malzeme bilgisi talep üzerine.',
 		status: 'Fiyat talep üzerine',
 		request: 'Bilgi isteyin',
 		representative: 'Temsilî görsel',
 		swipe: 'Kaydırarak keşfedin',
 		items: [
-			{ type: 'Vazo', name: 'Form I' },
-			{ type: 'Kase', name: 'Form II' },
-			{ type: 'Şamdan', name: 'Form III' },
-			{ type: 'Vazo üçlüsü', name: 'Form IV' },
-			{ type: 'Vazo', name: 'Form V' }
+			{ type: 'Masa objesi', name: 'Masa' },
+			{ type: 'Duvar apliği', name: 'Duvar' },
+			{ type: 'Dekoratif tabak', name: 'Renko' },
+			{ type: 'Duvar saksısı', name: 'Saksı' },
+			{ type: 'Kitap tutucu', name: 'Kitap' },
+			{ type: 'Bahçe heykeli', name: 'Bahçe' }
 		],
 		endTitle: 'Koleksiyonun tamamı',
 		endText: 'Yeni parçalar eklendikçe ilk siz haberdar olun.',
@@ -98,15 +99,6 @@ const tr = {
 			{ title: 'İmza', text: 'Her parça, tasarımcısının eve dair kişisel bakışını taşır.' }
 		],
 		caption: 'Işık, gölge ve form'
-	},
-	atelier: {
-		eyebrow: 'Atölye',
-		role: 'Mimar',
-		name: 'Arzu Gürcan',
-		statement: 'Heykelsi nesneler, kalıcı formlar. Eve dair kişisel bir ifade.',
-		body: 'ARJE, Mimar Arzu Gürcan’ın imzasını taşıyan butik bir tasarım evi. Mimarlığın oran duygusu burada odanın ölçeğinden, elde tutulan bir nesnenin ölçeğine taşınıyor. Her parça, bir mekânın karakterini tamamlamak için tasarlanıyor.',
-		portraitNote: 'Portre yakında',
-		sketchCaption: 'Çizimden nesneye'
 	},
 	inSitu: {
 		eyebrow: 'Mekânda',
@@ -148,10 +140,9 @@ const tr = {
 		}
 	},
 	alt: {
-		hero: 'Beyaz basamaklı sade bir merdiven ve sahanlıkta duran bir vazo',
+		hero: 'Taş bir duvarda, bakır sırlı seramik disk ve cam küreden oluşan Duvar apliği',
 		approach: 'Güçlü gölgeler düşen taş sütunlar',
 		approachDetail: 'Ahşap bir yüzeyde toprak tonlarında seramik vazolar',
-		sketch: 'Kalem ve cetvelle çizim yapan bir mimarın elleri',
 		inSitu: [
 			'Geniş pencereli, aydınlık bir oturma odası',
 			'Ahşap bir konsol ve üzerindeki dekoratif objeler',
@@ -164,7 +155,10 @@ const tr = {
 		emailLabel: 'E-posta',
 		exploreTitle: 'Keşfedin',
 		rights: 'Tüm hakları saklıdır.',
-		credit: 'Geçici görseller: Unsplash'
+		credit: 'Geçici görseller: Unsplash',
+		social: 'Sosyal medya',
+		follow: 'ARJE’yi takip edin',
+		emailNote: 'Proje talepleri ve basın için'
 	}
 };
 

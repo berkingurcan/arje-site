@@ -1,4 +1,4 @@
-# ARJE — by Mimar Arzu Gürcan
+# ARJE
 
 One-page website for ARJE, built with **SvelteKit (Svelte 5)** and deployed on **Vercel**.
 Turkish / English / Russian, light & dark themes, designed mobile-first.
@@ -39,9 +39,8 @@ Copy lives in `src/lib/i18n/tr.ts`, `en.ts`, `ru.ts` — the English and Russian
 | --- | --- |
 | Contact email (currently `info@arje.com.tr`, **placeholder**) | `src/lib/config.ts` → `email` |
 | Production URL | `src/lib/config.ts` → `url` |
-| Instagram (hidden while empty) | `src/lib/config.ts` → `instagram` |
+| Social links (Instagram, Pinterest, LinkedIn — **placeholder URLs**) | `src/lib/config.ts` → `social` |
 | Product names (“Form I … Form V” are working titles) | `collection.items` in each `src/lib/i18n/*.ts` |
-| Designer portrait (currently a monogram placeholder) | `src/lib/components/Atelier.svelte` |
 
 ### Enquiry form
 
@@ -62,9 +61,11 @@ Every image slot has a designed placeholder (warm gradient + monogram) underneat
 ## Design system
 
 - **Brand**: Bordeaux & Pine handoff — Bordeaux `#571F2D`, Pine `#233D32`, Ivory `#F3EDE2`, Brass `#B49A70`. Logo marks are the original outlined SVG paths (`src/lib/brand/`), never retyped.
-- **Type**: Cormorant (display serif) + Manrope (text sans), both open-source (SIL OFL), self-hosted via Fontsource, with Turkish and Cyrillic coverage.
+- **Type**: Noto Serif Display (light, condensed width — display) + Geist (text), both open-source (SIL OFL), self-hosted via Fontsource, with Turkish and Cyrillic coverage. Labels are sentence case; no tracked-out caps.
+- **Symbol**: the continuous-line A·J mark leads the header lockup, signs the footer, and is drawn once as a brass hairline across the hero (the page's single orchestrated motion).
+- **Favicon**: Bordeaux disc with the Ivory symbol (`static/brand/favicon.svg`, 16/32/48 PNG + ICO, 192/512 icons, maskable 512, 180 Apple touch icon).
 - **Themes**: light is the default (per brand guidance the palette is not auto-inverted from the OS setting). Dark is an authored “evening” palette built on deep pine. The choice is remembered per visitor. Tokens are in `src/app.css`.
-- **Motion**: scroll reveals, image curtains, a one-time monogram line-draw, circular theme transition (View Transitions API), cross-fade between languages. All motion is disabled for visitors with *reduce motion* turned on.
+- **Motion**: one hero sequence (symbol line-draw + headline rise), circular theme transition. Language switches swap copy in place with no page-wide transition (the old cross-fade froze the page on every switch); the other languages are preloaded eagerly. All motion is disabled for visitors with *reduce motion* turned on.
 - **Accessibility**: WCAG 2.2 AA contrast on all text pairs, 44px touch targets, visible focus rings, skip link, keyboard-operable menu (Esc closes), labelled form with inline errors.
 
 ## Structure
@@ -77,7 +78,7 @@ src/
   lib/
     brand/                    Wordmark + Monogram (from the brand handoff)
     components/               Header, Hero, Manifesto, Collection, Approach,
-                              Atelier, InSitu, Trade (form), Footer, …
+                              InSitu, Trade (form), Footer, …
     i18n/                     tr.ts (source), en.ts, ru.ts
     config.ts                 email, URL, form endpoint
     media.ts                  all imagery in one place

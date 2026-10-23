@@ -1,23 +1,13 @@
 <script lang="ts">
-	import '@fontsource-variable/cormorant/wght.css';
-	import '@fontsource-variable/cormorant/wght-italic.css';
-	import '@fontsource-variable/manrope/wght.css';
+	import '@fontsource-variable/noto-serif-display/standard.css';
+	import '@fontsource-variable/geist/wght.css';
 	import '../app.css';
-	import { onNavigate } from '$app/navigation';
 
 	let { children } = $props();
 
-	// Soft cross-fade when switching language.
-	onNavigate((nav) => {
-		if (!document.startViewTransition || nav.from?.url.pathname === nav.to?.url.pathname) return;
-		if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-		return new Promise((resolve) => {
-			document.startViewTransition(async () => {
-				resolve();
-				await nav.complete;
-			});
-		});
-	});
+	// Language switches swap the copy in place. There is deliberately no
+	// page-wide View Transition here: snapshotting the whole page froze it
+	// for ~0.5s on every switch and made language changes feel laggy.
 </script>
 
 {@render children()}

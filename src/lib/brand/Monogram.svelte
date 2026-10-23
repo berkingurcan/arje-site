@@ -1,15 +1,17 @@
 <script lang="ts">
 	/**
-	 * ARJE continuous-line A·J monogram (geometry from the brand handoff).
-	 * `small` uses the heavier optical stroke for small sizes.
-	 * `draw` traces the line once when it scrolls into view.
+	 * ARJE continuous-line A·J symbol (geometry from the brand handoff).
+	 * `small`    heavier optical stroke for small sizes (header, favicon scale).
+	 * `hairline` constant 1px-ish stroke at any size (large decorative use).
+	 * `draw`     traces the line once when it gets `.is-in` (or an ancestor does).
 	 */
 	let {
 		small = false,
+		hairline = false,
 		draw = false,
 		decorative = true,
 		class: klass = ''
-	}: { small?: boolean; draw?: boolean; decorative?: boolean; class?: string } = $props();
+	}: { small?: boolean; hairline?: boolean; draw?: boolean; decorative?: boolean; class?: string } = $props();
 </script>
 
 <svg
@@ -27,7 +29,7 @@
 		d="M28 153 L70 34 Q72 28 74 35 L105 133 C112 159 129 164 147 160 Q175 154 176 122 L176 111 M151 111 H176"
 		fill="none"
 		stroke="currentColor"
-		stroke-width={small ? 5.5 : 3.8}
+		stroke-width={hairline ? 0.32 : small ? 6.5 : 3.8}
 		stroke-linecap="round"
 		stroke-linejoin="round"
 	/>
@@ -43,7 +45,7 @@
 	:global(html.js) .draw path {
 		stroke-dasharray: 1;
 		stroke-dashoffset: 1;
-		transition: stroke-dashoffset 2.4s cubic-bezier(0.65, 0, 0.35, 1) 0.2s;
+		transition: stroke-dashoffset 2.6s cubic-bezier(0.65, 0, 0.35, 1) 0.35s;
 	}
 	:global(html.js .is-in) .draw path,
 	:global(html.js) .draw:global(.is-in) path {

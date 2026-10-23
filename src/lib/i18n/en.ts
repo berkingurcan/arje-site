@@ -26,12 +26,12 @@ const en: Dict = {
 		themeLight: 'Light',
 		themeDark: 'Dark',
 		theme: 'Theme',
-		language: 'Language'
+		language: 'Language',
+		enquire: 'Enquire'
 	},
 	nav: {
 		collection: 'Collection',
 		approach: 'Approach',
-		atelier: 'Atelier',
 		trade: 'For Architects',
 		contact: 'Contact'
 	},
@@ -43,7 +43,7 @@ const en: Dict = {
 		lead: 'Sculptural forms, enduring lines. A personal expression of home, by architect Arzu Gürcan.',
 		ctaPrimary: 'Explore the collection',
 		ctaSecondary: 'For architects',
-		caption: 'First collection · In preparation',
+		caption: 'First collection in preparation',
 		scroll: 'Scroll down'
 	},
 	manifesto: {
@@ -66,17 +66,18 @@ const en: Dict = {
 	collection: {
 		eyebrow: 'Collection',
 		title: 'Selected objects',
-		note: 'The first collection is in preparation. Images shown are representative; product photography is coming soon.',
+		note: 'The first collection is in preparation. Prices, dimensions and materials on request.',
 		status: 'Price on request',
 		request: 'Request details',
 		representative: 'Representative image',
 		swipe: 'Swipe to explore',
 		items: [
-			{ type: 'Vessel', name: 'Form I' },
-			{ type: 'Bowl', name: 'Form II' },
-			{ type: 'Candleholder', name: 'Form III' },
-			{ type: 'Vessel trio', name: 'Form IV' },
-			{ type: 'Vessel', name: 'Form V' }
+			{ type: 'Table sculpture', name: 'Masa' },
+			{ type: 'Wall light', name: 'Duvar' },
+			{ type: 'Decorative dish', name: 'Renko' },
+			{ type: 'Wall planter', name: 'Saksı' },
+			{ type: 'Book holder', name: 'Kitap' },
+			{ type: 'Garden sculpture', name: 'Bahçe' }
 		],
 		endTitle: 'The full collection',
 		endText: 'Be the first to know as new pieces arrive.',
@@ -92,15 +93,6 @@ const en: Dict = {
 			{ title: 'Authorship', text: 'Each piece carries its designer’s personal view of home.' }
 		],
 		caption: 'Light, shadow and form'
-	},
-	atelier: {
-		eyebrow: 'Atelier',
-		role: 'Architect',
-		name: 'Arzu Gürcan',
-		statement: 'Sculptural objects, enduring forms. A personal expression of home.',
-		body: 'ARJE is a boutique design house bearing the signature of architect Arzu Gürcan. Here, an architect’s sense of proportion moves from the scale of a room to the scale of an object held in the hand — each piece designed to complete the character of a space.',
-		portraitNote: 'Portrait coming soon',
-		sketchCaption: 'From drawing to object'
 	},
 	inSitu: {
 		eyebrow: 'In situ',
@@ -142,10 +134,9 @@ const en: Dict = {
 		}
 	},
 	alt: {
-		hero: 'A minimal staircase of white steps leading to a landing with a vase',
+		hero: 'The Duvar wall light: a copper-glazed ceramic disc with a glass globe, on a stone wall',
 		approach: 'Stone columns casting strong shadows',
 		approachDetail: 'Ceramic vessels in earthy tones on a wooden surface',
-		sketch: 'An architect’s hands drafting with pencil and ruler',
 		inSitu: [
 			'A bright living room with a large window',
 			'A wooden sideboard styled with objects',
@@ -158,7 +149,10 @@ const en: Dict = {
 		emailLabel: 'Email',
 		exploreTitle: 'Explore',
 		rights: 'All rights reserved.',
-		credit: 'Temporary imagery: Unsplash'
+		credit: 'Temporary imagery: Unsplash',
+		social: 'Social media',
+		follow: 'Follow ARJE',
+		emailNote: 'Project enquiries and press'
 	}
 };
 

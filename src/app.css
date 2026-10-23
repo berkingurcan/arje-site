@@ -1,120 +1,117 @@
 /* ==========================================================================
-   ARJE — Bordeaux & Pine · design system
-   Tokens follow the brand handoff (tokens/arje.css). The dark theme is an
-   authored "evening" palette built from Pine, not an automatic inversion.
+   ARJE — design system (2026)
+   Brand constants from the handoff: Bordeaux, Pine, Ivory, Brass.
+   The page sits on a cool limestone ground; Bordeaux carries the type,
+   Pine carries the trade field and the evening (dark) theme, and Brass is
+   reserved for the continuous-line symbol.
    ========================================================================== */
 
 :root {
 	/* Brand constants */
 	--arje-bordeaux: #571f2d;
-	--arje-bordeaux-hover: #421522;
+	--arje-bordeaux-deep: #3f1520;
 	--arje-pine: #233d32;
-	--arje-pine-hover: #192e25;
 	--arje-ivory: #f3ede2;
 	--arje-brass: #b49a70;
-	--arje-divider: #d4c9ba;
 
 	/* Type */
-	--font-display: 'Cormorant Variable', Georgia, 'Times New Roman', serif;
-	--font-body: 'Manrope Variable', Arial, Helvetica, sans-serif;
+	--font-display: 'Noto Serif Display Variable', 'Noto Serif Display', Georgia, serif;
+	--font-body: 'Geist Variable', 'Helvetica Neue', Arial, sans-serif;
+	--display-stretch: 78%;
 
-	--fs-hero: clamp(3.1rem, 10vw, 8.75rem);
-	--fs-h2: clamp(2.25rem, 6vw, 5.25rem);
-	--fs-h3: clamp(1.75rem, 3vw, 2.5rem);
-	--fs-lead: clamp(1.0625rem, 1.4vw, 1.25rem);
+	--fs-hero: clamp(3.6rem, 12vw, 12.75rem);
+	--fs-h2: clamp(2.6rem, 6.2vw, 6rem);
+	--fs-h3: clamp(1.6rem, 2.2vw, 2.1rem);
+	--fs-lead: clamp(1.0625rem, 1.25vw, 1.1875rem);
 	--fs-body: 1rem;
 	--fs-small: 0.875rem;
-	--fs-label: 0.75rem;
-
-	--tracking-label: 0.16em;
-	--tracking-display: -0.02em;
+	--fs-meta: 0.8125rem;
 
 	/* Space */
-	--pad: clamp(1.25rem, 4.2vw, 4rem);
-	--max: 82.5rem;
-	--section: clamp(5rem, 11vw, 10rem);
-	--gutter: clamp(1rem, 2.4vw, 2.5rem);
-	--header-h: 4rem;
+	--pad: clamp(1.25rem, 3.6vw, 3.5rem);
+	--max: 90rem;
+	--section: clamp(5.5rem, 12vw, 11rem);
+	--gutter: clamp(1rem, 2vw, 2rem);
+	--header-h: 4.25rem;
 
 	/* Shape & motion */
-	--radius: 2px;
+	--radius: 0;
+	--pill: 999px;
 	--target: 44px;
 	--ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-	--fast: 200ms;
+	--fast: 220ms;
 
-	/* ---------- Light theme (default, per brand guidance) ---------- */
-	--bg: var(--arje-ivory);
-	--bg-alt: #ece4d6;
-	--surface: #f8f4ec;
+	/* ---------- Light theme: limestone ---------- */
+	--bg: #eeeae3;
+	--bg-alt: #e4ded4;
+	--surface: #f6f3ee;
 	--ink: var(--arje-bordeaux);
-	--text: #3f1d26;
-	--muted: #6e4a53;
-	--line: var(--arje-divider);
-	--line-strong: rgb(87 31 45 / 0.35);
+	--text: #2e2427;
+	--muted: #6b6063;
+	--line: rgb(46 36 39 / 0.13);
+	--line-strong: rgb(46 36 39 / 0.3);
 	--accent: var(--arje-brass);
 	--btn-bg: var(--arje-bordeaux);
 	--btn-fg: var(--arje-ivory);
-	--btn-hover: var(--arje-bordeaux-hover);
+	--btn-hover: var(--arje-bordeaux-deep);
 	--focus: var(--arje-bordeaux);
-	--control: var(--arje-pine);
-	--header-bg: rgb(243 237 226 / 0.82);
+	--control: rgb(46 36 39 / 0.4);
+	--header-bg: rgb(238 234 227 / 0.78);
 	--field-pine: var(--arje-pine);
 	--field-bordeaux: var(--arje-bordeaux);
 	--ph-dim: 1;
-	--grain: 0.07;
 
 	color-scheme: light;
 }
 
 :root[data-theme='dark'] {
-	--bg: #101814;
-	--bg-alt: #141e19;
-	--surface: #18231e;
+	--bg: #111915;
+	--bg-alt: #16201b;
+	--surface: #1a2520;
 	--ink: var(--arje-ivory);
-	--text: #e4dbcc;
-	--muted: #a99f8f;
-	--line: rgb(243 237 226 / 0.12);
-	--line-strong: rgb(243 237 226 / 0.32);
+	--text: #ddd5c8;
+	--muted: #a29a8d;
+	--line: rgb(243 237 226 / 0.11);
+	--line-strong: rgb(243 237 226 / 0.3);
 	--accent: #c4ab80;
 	--btn-bg: var(--arje-ivory);
-	--btn-fg: #101814;
+	--btn-fg: #111915;
 	--btn-hover: #e2d8c6;
 	--focus: var(--arje-ivory);
-	--control: rgb(243 237 226 / 0.6);
-	--header-bg: rgb(16 24 20 / 0.78);
-	--field-pine: #1c3128;
-	--field-bordeaux: #4e1b28;
-	--ph-dim: 0.72;
-	--grain: 0.05;
+	--control: rgb(243 237 226 / 0.45);
+	--header-bg: rgb(17 25 21 / 0.76);
+	--field-pine: #1b2f26;
+	--field-bordeaux: #4a1a26;
+	--ph-dim: 0.7;
 
 	color-scheme: dark;
 }
 
-/* Authored brand fields — always Ivory type on a saturated surface. */
+/* Authored brand fields — Ivory type on a saturated surface. */
 .field-pine,
 .field-bordeaux {
 	--ink: var(--arje-ivory);
-	--text: #ebe3d5;
-	--line: rgb(243 237 226 / 0.18);
-	--line-strong: rgb(243 237 226 / 0.55);
-	--accent: #c4ab80;
+	--text: #e9e1d3;
+	--line: rgb(243 237 226 / 0.16);
+	--line-strong: rgb(243 237 226 / 0.45);
+	--accent: #c9b08a;
 	--btn-bg: var(--arje-ivory);
 	--btn-hover: #e4dac8;
 	--focus: var(--arje-ivory);
-	--control: rgb(243 237 226 / 0.62);
+	--control: rgb(243 237 226 / 0.5);
 	background: var(--bg);
 	color: var(--text);
 	color-scheme: dark;
 }
 .field-pine {
 	--bg: var(--field-pine);
-	--muted: #d9cdb8;
+	--muted: #c9c0ae;
 	--btn-fg: var(--arje-pine);
 }
 .field-bordeaux {
 	--bg: var(--field-bordeaux);
-	--muted: #cdbfa9;
+	--muted: #d3c3b4;
 	--btn-fg: var(--arje-bordeaux);
 }
 
@@ -146,8 +143,8 @@ body {
 	font-family: var(--font-body);
 	font-size: var(--fs-body);
 	font-weight: 400;
-	line-height: 1.7;
-	font-feature-settings: 'kern', 'liga';
+	line-height: 1.6;
+	font-feature-settings: 'kern', 'liga', 'ss01';
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-rendering: optimizeLegibility;
@@ -155,17 +152,6 @@ body {
 	transition:
 		background-color 400ms var(--ease),
 		color 400ms var(--ease);
-}
-
-/* Film grain — a whisper of paper texture over the whole page. */
-body::after {
-	content: '';
-	position: fixed;
-	inset: 0;
-	z-index: 90;
-	pointer-events: none;
-	opacity: var(--grain);
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.2 0 0 0 0 0.12 0 0 0 0 0.1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 img,
@@ -218,17 +204,11 @@ ol {
 }
 
 :focus-visible {
-	outline: 3px solid var(--focus);
+	outline: 2px solid var(--focus);
 	outline-offset: 3px;
-	border-radius: var(--radius);
 }
 
 /* ---------- Layout ---------- */
-.grid > *,
-.head > * {
-	min-width: 0;
-}
-
 .container {
 	width: min(100% - 2 * var(--pad), var(--max));
 	margin-inline: auto;
@@ -237,6 +217,15 @@ ol {
 .section {
 	padding-block: var(--section);
 	position: relative;
+}
+
+.grid12 {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	column-gap: var(--gutter);
+}
+.grid12 > * {
+	min-width: 0;
 }
 
 .sr-only {
@@ -255,55 +244,41 @@ ol {
 .display,
 .h2 {
 	font-family: var(--font-display);
-	font-weight: 450;
+	font-weight: 300;
+	font-stretch: var(--display-stretch);
+	font-optical-sizing: auto;
 	color: var(--ink);
-	letter-spacing: var(--tracking-display);
-	line-height: 0.98;
+	letter-spacing: -0.015em;
+	line-height: 0.95;
 	text-wrap: balance;
 	overflow-wrap: break-word;
-	hyphens: auto;
-	-webkit-hyphens: auto;
 }
 
 .h2 {
 	font-size: var(--fs-h2);
-	line-height: 1.02;
+	line-height: 0.98;
 }
 
+/* Headline lines marked "em" in the copy are staggered, not italicised. */
 .display em,
-.h2 em,
-.em {
-	font-style: italic;
-	font-weight: 400;
+.h2 em {
+	font-style: normal;
 }
 
 .label {
-	display: flex;
-	align-items: center;
-	gap: 0.85rem;
-	font-family: var(--font-body);
-	font-size: var(--fs-label);
-	font-weight: 600;
-	letter-spacing: var(--tracking-label);
-	text-transform: uppercase;
+	font-size: var(--fs-meta);
+	font-weight: 500;
 	line-height: 1.4;
-	color: var(--ink);
-}
-
-.label.rule::before {
-	content: '';
-	width: 2rem;
-	height: 1px;
-	background: var(--accent);
-	flex: none;
+	letter-spacing: 0.005em;
+	color: var(--muted);
 }
 
 .lead {
 	font-size: var(--fs-lead);
-	line-height: 1.65;
+	line-height: 1.6;
 	color: var(--text);
 	text-wrap: pretty;
-	max-width: 36rem;
+	max-width: 34rem;
 }
 
 .muted {
@@ -316,39 +291,28 @@ ol {
 
 /* ---------- Buttons & links ---------- */
 .btn {
-	--arrow-shift: 0px;
-	position: relative;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	gap: 1rem;
-	min-height: 3.375rem;
+	gap: 0.6rem;
+	min-height: 3rem;
 	padding: 0 1.6rem;
-	border-radius: var(--radius);
+	border-radius: var(--pill);
 	background: var(--btn-bg);
 	color: var(--btn-fg);
-	font-size: 0.78rem;
-	font-weight: 600;
-	letter-spacing: 0.16em;
-	text-transform: uppercase;
+	font-size: 0.9375rem;
+	font-weight: 500;
+	letter-spacing: -0.005em;
 	line-height: 1;
 	white-space: nowrap;
 	transition:
 		background-color var(--fast) var(--ease),
-		color var(--fast) var(--ease);
+		color var(--fast) var(--ease),
+		box-shadow var(--fast) var(--ease);
 }
 
 .btn:hover {
 	background: var(--btn-hover);
-	--arrow-shift: 4px;
-}
-
-.btn .arrow,
-.link .arrow {
-	width: 1.1rem;
-	height: auto;
-	transform: translateX(var(--arrow-shift, 0));
-	transition: transform 320ms var(--ease-out);
 }
 
 .btn-ghost {
@@ -362,87 +326,52 @@ ol {
 	box-shadow: inset 0 0 0 1px var(--ink);
 }
 
+.btn-sm {
+	min-height: 2.5rem;
+	padding: 0 1.15rem;
+	font-size: 0.875rem;
+}
+
 .link {
-	--arrow-shift: 0px;
 	display: inline-flex;
 	align-items: center;
-	gap: 0.7rem;
 	min-height: var(--target);
-	font-size: 0.78rem;
-	font-weight: 600;
-	letter-spacing: 0.16em;
-	text-transform: uppercase;
+	font-size: 0.9375rem;
+	font-weight: 500;
 	color: var(--ink);
-	background: linear-gradient(currentColor, currentColor) 0 calc(50% + 0.95em) / 100% 1px no-repeat;
-	transition: background-size 400ms var(--ease-out);
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.35em;
+	text-decoration-color: var(--line-strong);
+	transition: text-decoration-color var(--fast) var(--ease);
 }
 
 .link:hover {
-	--arrow-shift: 4px;
-	background-size: 0% 1px;
-	background-position-x: 100%;
+	text-decoration-color: currentColor;
 }
 
-/* ---------- Reveal on scroll ---------- */
-html.js .reveal {
-	opacity: 0;
-	transform: translate3d(0, 2rem, 0);
-	transition:
-		opacity 1s var(--ease-out),
-		transform 1.2s var(--ease-out);
-	transition-delay: calc(var(--d, 0) * 90ms);
+/* ---------- Reveal (hero only — one orchestrated moment) ---------- */
+html.js .reveal .rise > span {
+	transform: translate3d(0, 105%, 0);
+	transition: transform 1.3s var(--ease-out);
+	transition-delay: calc(var(--i, 0) * 110ms + 150ms);
 }
-
-html.js .reveal.is-in {
-	opacity: 1;
+html.js .reveal.is-in .rise > span {
 	transform: none;
 }
-
-/* Lines that rise from behind a mask */
 .rise {
 	display: block;
 	overflow: hidden;
-	padding-bottom: 0.08em;
-	margin-bottom: -0.08em;
+	padding-bottom: 0.1em;
+	margin-bottom: -0.1em;
 }
-
 .rise > span {
 	display: block;
 }
 
-html.js .reveal .rise > span {
-	transform: translate3d(0, 105%, 0);
-	transition: transform 1.25s var(--ease-out);
-	transition-delay: calc((var(--d, 0) + var(--i, 0)) * 90ms);
-}
-
-html.js .reveal.is-in .rise > span {
-	transform: none;
-}
-
-html.js .reveal:has(.rise) {
-	transform: none;
-}
-
-/* Image curtain */
-html.js .curtain {
-	clip-path: inset(100% 0 0 0);
-	transition: clip-path 1.4s var(--ease-out);
-	transition-delay: calc(var(--d, 0) * 90ms);
-}
-
-html.js .is-in .curtain,
-html.js .curtain.is-in {
-	clip-path: inset(0 0 0 0);
-}
-
 @media (prefers-reduced-motion: reduce) {
-	html.js .reveal,
-	html.js .reveal .rise > span,
-	html.js .curtain {
-		opacity: 1;
+	html.js .reveal .rise > span {
 		transform: none;
-		clip-path: none;
 		transition: none;
 	}
 

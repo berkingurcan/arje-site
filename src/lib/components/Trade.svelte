@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { tick } from 'svelte';
 	import Icon from './Icon.svelte';
-	import { reveal } from '$lib/actions/reveal';
 	import { enquiry } from '$lib/enquiry.svelte';
 	import { site } from '$lib/config';
 	import type { Dict } from '$lib/i18n';
@@ -108,34 +107,27 @@
 <section id="trade" class="section trade field-pine" aria-labelledby="trade-title">
 	<div class="container grid">
 		<div class="copy">
-			<div class="reveal" use:reveal>
-				<p class="label rule">{t.trade.eyebrow}</p>
-				<h2 id="trade-title" class="h2 title">
-					{#each t.trade.title as line, i (i)}
-						<span class="rise" style="--i:{i}">
-							<span>{#if line.em}<em>{line.text}</em>{:else}{line.text}{/if}</span>
-						</span>{' '}
-					{/each}
-				</h2>
-			</div>
-			<p class="lead reveal" use:reveal style="--d:1">{t.trade.lead}</p>
-			<ul class="topics reveal" use:reveal style="--d:2">
+			<p class="label eyebrow">{t.trade.eyebrow}</p>
+			<h2 id="trade-title" class="h2 title">
+				{#each t.trade.title as line, i (i)}
+					<span class="line l{i}">{line.text}</span>{' '}
+				{/each}
+			</h2>
+			<p class="lead">{t.trade.lead}</p>
+			<ul class="topics">
 				{#each t.trade.topics as topic, i (i)}
-					<li><span class="num">0{i + 1}</span>{topic}</li>
+					<li>{topic}</li>
 				{/each}
 			</ul>
 		</div>
 
-		<div class="form-wrap reveal" use:reveal style="--d:1">
+		<div class="form-wrap">
 			{#if done}
 				<div class="result" bind:this={resultEl} tabindex="-1" role="status">
 					<span class="tick" aria-hidden="true"><Icon name="check" /></span>
 					<p class="result-title">{f.successTitle}</p>
 					<p class="result-text">{done === 'sent' ? f.successSent : f.successMail}</p>
-					<button class="link" type="button" onclick={reset}>
-						{f.again}
-						<Icon name="arrow" class="arrow" />
-					</button>
+					<button class="link" type="button" onclick={reset}>{f.again}</button>
 				</div>
 			{:else}
 				<form bind:this={formEl} novalidate onsubmit={submit}>
@@ -233,7 +225,6 @@
 					<div class="full actions">
 						<button class="btn submit" type="submit" disabled={sending}>
 							{sending ? f.sending : f.submit}
-							<Icon name="arrow" class="arrow" />
 						</button>
 					</div>
 				</form>
@@ -247,94 +238,85 @@
 		display: grid;
 		gap: clamp(3rem, 7vw, 4.5rem);
 	}
+	.eyebrow {
+		color: var(--muted);
+	}
 	.title {
 		margin-top: 1.25rem;
+	}
+	.title .line {
+		display: block;
+	}
+	.title .l1 {
+		padding-left: 0.6em;
 	}
 	.lead {
 		margin-top: 1.75rem;
 		color: var(--muted);
 	}
 	.topics {
-		margin-top: 2rem;
+		margin-top: 2.25rem;
 		border-top: 1px solid var(--line);
 	}
 	.topics li {
-		display: flex;
-		gap: 1rem;
-		align-items: baseline;
-		padding-block: 0.95rem;
+		padding-block: 0.9rem;
 		border-bottom: 1px solid var(--line);
 		color: var(--ink);
-		font-family: var(--font-display);
-		font-size: 1.4rem;
-		line-height: 1.25;
-	}
-	.topics .num {
-		font-family: var(--font-body);
-		font-size: 0.75rem;
-		font-weight: 600;
-		letter-spacing: 0.14em;
-		color: var(--accent);
-		min-width: 1.5rem;
+		font-size: 1.0625rem;
 	}
 
 	form {
 		display: grid;
-		gap: 1.5rem;
+		gap: 1.75rem;
 	}
 	.field {
 		display: grid;
-		gap: 0.45rem;
+		gap: 0.2rem;
 	}
 	label {
-		font-size: 0.75rem;
-		font-weight: 600;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-		color: var(--ink);
+		font-size: var(--fs-meta);
+		font-weight: 500;
+		color: var(--muted);
 	}
 	.opt {
-		font-weight: 500;
-		letter-spacing: 0.04em;
-		text-transform: none;
-		color: var(--muted);
+		font-weight: 400;
+		opacity: 0.8;
 	}
 	input[type='text'],
 	input[type='email'],
 	select,
 	textarea {
 		width: 100%;
-		min-height: 3.25rem;
-		padding: 0.85rem 0.9rem;
-		border: 1px solid var(--control);
-		border-radius: var(--radius);
-		background: rgb(243 237 226 / 0.04);
+		min-height: 3rem;
+		padding: 0.6rem 0;
+		border: 0;
+		border-bottom: 1px solid var(--control);
+		border-radius: 0;
+		background: transparent;
 		color: var(--ink);
-		font-size: 1rem; /* ≥16px prevents iOS zoom */
+		font-size: 1.0625rem; /* ≥16px prevents iOS zoom */
 		line-height: 1.4;
-		transition:
-			border-color var(--fast) var(--ease),
-			background-color var(--fast) var(--ease);
+		transition: border-color var(--fast) var(--ease);
 	}
 	textarea {
 		resize: vertical;
-		min-height: 8rem;
+		min-height: 7rem;
 	}
 	textarea::placeholder {
 		color: var(--muted);
-		opacity: 0.8;
+		opacity: 0.75;
 	}
 	input:hover,
 	select:hover,
 	textarea:hover {
-		background: rgb(243 237 226 / 0.08);
+		border-color: var(--ink);
 	}
 	input:focus-visible,
 	select:focus-visible,
 	textarea:focus-visible {
-		outline: 3px solid var(--focus);
-		outline-offset: 2px;
-		border-color: var(--ink);
+		outline: none;
+		border-bottom: 2px solid var(--ink);
+		margin-bottom: -1px;
 	}
 	.select {
 		position: relative;
@@ -342,10 +324,10 @@
 	.select::after {
 		content: '';
 		position: absolute;
-		right: 1.1rem;
+		right: 0.35rem;
 		top: 50%;
-		width: 0.5rem;
-		height: 0.5rem;
+		width: 0.45rem;
+		height: 0.45rem;
 		border-right: 1.25px solid var(--ink);
 		border-bottom: 1.25px solid var(--ink);
 		transform: translateY(-70%) rotate(45deg);
@@ -353,7 +335,8 @@
 	}
 	select {
 		appearance: none;
-		padding-right: 2.75rem;
+		padding-right: 2rem;
+		cursor: pointer;
 	}
 	select option {
 		color: #233d32;
@@ -362,31 +345,16 @@
 	.invalid input,
 	.invalid .box {
 		border-color: var(--ink);
-		border-width: 2px;
+		border-bottom-width: 2px;
 	}
 	.err {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
+		margin-top: 0.4rem;
 		font-size: var(--fs-small);
 		color: var(--ink);
 	}
-	.err::before {
-		content: '!';
-		display: grid;
-		place-items: center;
-		width: 1.1rem;
-		height: 1.1rem;
-		border-radius: 50%;
-		background: var(--ink);
-		color: var(--bg);
-		font-size: 0.7rem;
-		font-weight: 700;
-		flex: none;
-	}
 	.summary {
-		padding: 0.9rem 1rem;
-		border-left: 3px solid var(--ink);
+		padding: 0.85rem 1.1rem;
+		border-radius: 0.5rem;
 		background: rgb(243 237 226 / 0.08);
 		color: var(--ink);
 		font-size: var(--fs-small);
@@ -398,13 +366,11 @@
 	.consent {
 		position: relative;
 		display: grid;
-		grid-template-columns: 1.5rem 1fr;
-		gap: 0.9rem;
+		grid-template-columns: 1.35rem 1fr;
+		gap: 0.85rem;
 		align-items: start;
 		font-size: var(--fs-small);
 		font-weight: 400;
-		letter-spacing: 0;
-		text-transform: none;
 		line-height: 1.55;
 		color: var(--text);
 		cursor: pointer;
@@ -414,8 +380,8 @@
 		position: absolute;
 		left: 0;
 		top: 0;
-		width: 1.5rem;
-		height: 1.5rem;
+		width: 1.35rem;
+		height: 1.35rem;
 		margin: 0;
 		opacity: 0;
 		cursor: pointer;
@@ -423,18 +389,18 @@
 	.box {
 		display: grid;
 		place-items: center;
-		width: 1.5rem;
-		height: 1.5rem;
+		width: 1.35rem;
+		height: 1.35rem;
 		border: 1px solid var(--control);
-		border-radius: var(--radius);
+		border-radius: 0.3rem;
 		color: transparent;
 		transition:
 			background-color var(--fast) var(--ease),
 			color var(--fast) var(--ease);
 	}
 	.box :global(.icon) {
-		width: 1rem;
-		height: 1rem;
+		width: 0.9rem;
+		height: 0.9rem;
 		stroke-width: 2;
 	}
 	.consent input:checked + .box {
@@ -443,8 +409,8 @@
 		color: var(--arje-pine);
 	}
 	.consent input:focus-visible + .box {
-		outline: 3px solid var(--focus);
-		outline-offset: 2px;
+		outline: 2px solid var(--focus);
+		outline-offset: 3px;
 	}
 
 	.submit {
@@ -459,9 +425,8 @@
 		display: grid;
 		gap: 0.75rem;
 		justify-items: start;
-		padding: clamp(1.75rem, 4vw, 3rem);
-		border: 1px solid var(--line-strong);
-		border-radius: var(--radius);
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--line-strong);
 	}
 	.result:focus {
 		outline: none;
@@ -469,16 +434,18 @@
 	.tick {
 		display: grid;
 		place-items: center;
-		width: 3rem;
-		height: 3rem;
+		width: 2.75rem;
+		height: 2.75rem;
 		border-radius: 50%;
-		border: 1px solid var(--line-strong);
+		box-shadow: inset 0 0 0 1px var(--line-strong);
 		color: var(--ink);
 		margin-bottom: 0.5rem;
 	}
 	.result-title {
 		font-family: var(--font-display);
-		font-size: 2.5rem;
+		font-weight: 300;
+		font-stretch: var(--display-stretch);
+		font-size: 2.75rem;
 		line-height: 1;
 		color: var(--ink);
 	}
@@ -490,7 +457,7 @@
 	@media (min-width: 48rem) {
 		form {
 			grid-template-columns: 1fr 1fr;
-			column-gap: 1.25rem;
+			column-gap: 2rem;
 		}
 		.full,
 		.summary {
@@ -510,9 +477,12 @@
 		.copy {
 			grid-column: 1 / span 5;
 		}
+		.title {
+			font-size: clamp(3rem, 4.9vw, 5.25rem);
+		}
 		.form-wrap {
 			grid-column: 7 / -1;
-			padding-top: 0.5rem;
+			padding-top: 2.5rem;
 		}
 	}
 </style>

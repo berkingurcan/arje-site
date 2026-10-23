@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Media from './Media.svelte';
-	import Icon from './Icon.svelte';
 	import Monogram from '$lib/brand/Monogram.svelte';
 	import { reveal } from '$lib/actions/reveal';
 	import { media } from '$lib/media';
@@ -9,254 +8,173 @@
 	let { t }: { t: Dict } = $props();
 </script>
 
-<section class="hero" aria-labelledby="hero-title">
-	<div class="container grid">
-		<div class="copy reveal" use:reveal>
-			<p class="label rule eyebrow rise-fade" style="--d:0">{t.hero.eyebrow}</p>
+<section class="hero reveal" use:reveal aria-labelledby="hero-title">
+	<div class="container grid12 layout">
+		<span class="line-mark" aria-hidden="true"><Monogram hairline draw /></span>
 
-			<h1 id="hero-title" class="display title">
-				{#each t.hero.title as line, i (i)}
-					<span class="rise line l{i}" style="--i:{i + 1}">
-						<span>
-							{#if line.em}<em>{line.text}</em>{:else}{line.text}{/if}
-						</span>
-					</span>{' '}
-				{/each}
-			</h1>
+		<h1 id="hero-title" class="display title">
+			{#each t.hero.title as line, i (i)}
+				<span class="rise l{i}" style="--i:{i}">
+					<span>{line.text}</span>
+				</span>{' '}
+			{/each}
+		</h1>
 
-			<p class="lead rise-fade" style="--d:4">{t.hero.lead}</p>
-
-			<div class="ctas rise-fade" style="--d:5">
-				<a class="btn" href="#collection">
-					{t.hero.ctaPrimary}
-					<Icon name="arrow" class="arrow" />
-				</a>
-				<a class="link" href="#trade">
-					{t.hero.ctaSecondary}
-					<Icon name="arrow" class="arrow" />
-				</a>
+		<div class="intro fade">
+			<p class="lead">{t.hero.lead}</p>
+			<div class="ctas">
+				<a class="btn" href="#collection">{t.hero.ctaPrimary}</a>
+				<a class="link" href="#trade">{t.hero.ctaSecondary}</a>
 			</div>
 		</div>
 
-		<figure class="visual reveal" use:reveal style="--d:2">
-			<div class="frame curtain">
-				<Media
-					item={media.hero}
-					alt={t.alt.hero}
-					ratio={0.84}
-					eager
-					sizes="(min-width: 64rem) 50vw, 100vw"
-				/>
-			</div>
-			<figcaption>
-				<span class="cap-mark" aria-hidden="true"><Monogram small /></span>
-				<span class="cap-text">{t.hero.caption}</span>
-			</figcaption>
+		<figure class="visual fade">
+			<Media
+				item={media.hero}
+				alt={t.alt.hero}
+				ratio={3 / 4}
+				eager
+				sizes="(min-width: 64rem) 34vw, 100vw"
+			/>
+			<figcaption class="label">{t.hero.caption}</figcaption>
 		</figure>
 	</div>
-
-	<a class="cue" href="#manifesto" aria-label={t.hero.scroll}>
-		<span class="cue-line" aria-hidden="true"></span>
-	</a>
 </section>
 
 <style>
 	.hero {
 		position: relative;
-		padding-top: calc(var(--header-h) + env(safe-area-inset-top) + clamp(1.5rem, 5vw, 3rem));
-		padding-bottom: clamp(3rem, 8vw, 6rem);
+		padding-top: calc(var(--header-h) + env(safe-area-inset-top) + clamp(2rem, 6vw, 3.5rem));
+		padding-bottom: clamp(3.5rem, 8vw, 6rem);
+		overflow: clip;
 	}
 
-	.grid {
-		display: grid;
-		gap: 2.75rem;
+	.layout {
+		position: relative;
+		row-gap: 2.5rem;
+	}
+	.layout > * {
+		grid-column: 1 / -1;
 	}
 
-	.eyebrow {
-		margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+	/* The continuous-line symbol, drawn once as a brass hairline. */
+	.line-mark {
+		position: absolute;
+		z-index: 0;
+		top: -6%;
+		right: -18%;
+		width: 92%;
+		color: var(--accent);
+		opacity: 0.85;
+		pointer-events: none;
 	}
 
 	.title {
+		position: relative;
+		z-index: 1;
 		font-size: var(--fs-hero);
-		line-height: 0.94;
-		letter-spacing: -0.025em;
-		margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+		line-height: 0.9;
+		letter-spacing: -0.02em;
 	}
-	.title em {
-		color: var(--ink);
+	.title .l1 {
+		padding-left: 0.62em;
+	}
+	@media (max-width: 47.99rem) {
+		.title {
+			font-size: 16.5vw;
+		}
 	}
 	:global(html[lang='ru']) .title {
-		font-size: clamp(2.85rem, 7.6vw, 6.5rem);
+		font-size: clamp(2.9rem, 8.6vw, 8.4rem);
+	}
+	@media (max-width: 47.99rem) {
+		:global(html[lang='ru']) .title {
+			font-size: 12vw;
+		}
 	}
 
+	.intro {
+		position: relative;
+		z-index: 1;
+		display: grid;
+		gap: 1.75rem;
+	}
 	.lead {
-		max-width: 30rem;
-		color: var(--muted);
-		margin-bottom: 2rem;
+		max-width: 26rem;
 	}
-
 	.ctas {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
-		gap: 0.75rem 2rem;
+		gap: 0.75rem 1.75rem;
 	}
 
-	/* Copy fades in after the headline rises */
-	:global(html.js) .rise-fade {
-		opacity: 0;
-		transform: translateY(0.75rem);
-		transition:
-			opacity 900ms var(--ease-out),
-			transform 1s var(--ease-out);
-		transition-delay: calc(var(--d) * 110ms);
-	}
-	:global(html.js .is-in) .rise-fade {
-		opacity: 1;
-		transform: none;
-	}
-
-	/* Visual */
 	.visual {
 		position: relative;
+		z-index: 1;
 		margin-inline: calc(var(--pad) * -1);
 	}
-	.frame {
-		overflow: hidden;
-	}
-	figcaption {
-		position: absolute;
-		left: var(--pad);
-		bottom: 1rem;
-		display: inline-flex;
-		align-items: center;
-		gap: 0.75rem;
-		padding: 0.55rem 0.9rem 0.55rem 0.7rem;
-		background: rgb(243 237 226 / 0.88);
-		-webkit-backdrop-filter: blur(10px);
-		backdrop-filter: blur(10px);
-		color: #571f2d;
-		border-radius: var(--radius);
-	}
-	.cap-mark {
-		width: 1.35rem;
-	}
-	.cap-text {
-		font-size: 0.75rem;
-		font-weight: 600;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-		line-height: 1.2;
+	.visual figcaption {
+		margin-top: 0.75rem;
+		padding-inline: var(--pad);
 	}
 
-	/* Gentle scroll-linked drift (progressive enhancement) */
-	@supports (animation-timeline: view()) {
-		@media (prefers-reduced-motion: no-preference) {
-			.frame :global(.media) {
-				animation: drift linear both;
-				animation-timeline: view();
-				animation-range: exit 0% exit 100%;
-			}
-		}
+	/* Copy and image settle in after the headline lines rise. */
+	:global(html.js) .fade {
+		opacity: 0;
+		transition: opacity 1.1s var(--ease) 0.75s;
 	}
-	@keyframes drift {
-		to {
-			translate: 0 8%;
-			scale: 1.06;
-		}
-	}
-
-	.cue {
-		display: none;
+	:global(html.js .is-in) .fade {
+		opacity: 1;
 	}
 
 	@media (min-width: 48rem) {
 		.visual {
 			margin-inline: 0;
 		}
-		figcaption {
-			left: 1rem;
-		}
-		.line.l1 {
-			padding-left: 0.9em;
+		.visual figcaption {
+			padding-inline: 0;
 		}
 	}
 
 	@media (min-width: 64rem) {
 		.hero {
-			min-height: min(100svh, 62rem);
+			min-height: min(100svh, 64rem);
 			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			padding-bottom: clamp(3rem, 6vw, 5rem);
+			align-items: center;
 		}
-		.grid {
-			grid-template-columns: repeat(12, minmax(0, 1fr));
-			column-gap: var(--gutter);
+		.layout {
+			grid-template-rows: auto 1fr;
+			row-gap: clamp(2.5rem, 5vw, 4.5rem);
 			align-items: end;
 		}
-		.copy {
-			grid-column: 1 / span 6;
-			padding-bottom: 1rem;
-			position: relative;
-			z-index: 2;
+		.title {
+			grid-column: 1 / span 9;
+			grid-row: 1;
+			align-self: start;
+		}
+		.intro {
+			grid-column: 1 / span 4;
+			grid-row: 2;
+			align-self: end;
 		}
 		.visual {
-			grid-column: 7 / -1;
+			grid-column: 9 / -1;
+			grid-row: 1 / span 2;
+			align-self: end;
 		}
-		.frame :global(.media) {
-			max-height: calc(100svh - var(--header-h) - 6rem);
-			min-height: 30rem;
-		}
-		.cue {
-			display: block;
-			position: absolute;
-			left: var(--pad);
-			bottom: 0;
-			width: var(--target);
-			height: 4.5rem;
-			overflow: hidden;
-		}
-		.cue-line {
-			position: absolute;
-			left: 50%;
-			top: 0;
-			width: 1px;
-			height: 100%;
-			background: var(--line-strong);
-		}
-		.cue-line::after {
-			content: '';
-			position: absolute;
-			inset: 0;
-			background: var(--ink);
-			transform-origin: top;
-			animation: cue 2.8s var(--ease) 1s 3 both;
+		.line-mark {
+			top: -4%;
+			left: 26%;
+			right: auto;
+			width: 54%;
 		}
 	}
 
-	@media (min-width: 64rem) and (max-width: 79.99rem) {
-		.title {
-			font-size: clamp(3.1rem, 8.4vw, 8.75rem);
-		}
-	}
-
-	@keyframes cue {
-		0% {
-			transform: scaleY(0);
-			transform-origin: top;
-		}
-		45% {
-			transform: scaleY(1);
-			transform-origin: top;
-		}
-		55% {
-			transform: scaleY(1);
-			transform-origin: bottom;
-		}
-		100% {
-			transform: scaleY(0);
-			transform-origin: bottom;
+	@media (prefers-reduced-motion: reduce) {
+		:global(html.js) .fade {
+			opacity: 1;
+			transition: none;
 		}
 	}
 </style>
