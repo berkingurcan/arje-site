@@ -1,0 +1,24 @@
+{
+  "name": "arje-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "ARJE by Mimar Arzu Gürcan — one-page website (SvelteKit, Vercel)",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
+  },
+  "devDependencies": {
+    "@fontsource-variable/cormorant": "^5.3.0",
+    "@fontsource-variable/manrope": "^5.3.0",
+    "@sveltejs/adapter-vercel": "^6.3.4",
+    "@sveltejs/kit": "^2.70.3",
+    "@sveltejs/vite-plugin-svelte": "^6.2.4",
+    "svelte": "^5.57.2",
+    "svelte-check": "^4.7.7",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.7"
+  }
+}
