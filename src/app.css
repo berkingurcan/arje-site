@@ -66,24 +66,25 @@
 }
 
 :root[data-theme='dark'] {
-	--bg: #111915;
-	--bg-alt: #16201b;
-	--surface: #1a2520;
+	/* Evening: deep Bordeaux ground, Ivory type, Brass symbol. */
+	--bg: #2a0e16;
+	--bg-alt: #321220;
+	--surface: #3a1624;
 	--ink: var(--arje-ivory);
-	--text: #ddd5c8;
-	--muted: #a29a8d;
-	--line: rgb(243 237 226 / 0.11);
-	--line-strong: rgb(243 237 226 / 0.3);
-	--accent: #c4ab80;
+	--text: #eadfd6;
+	--muted: #c2aba7;
+	--line: rgb(243 237 226 / 0.12);
+	--line-strong: rgb(243 237 226 / 0.32);
+	--accent: #c9ad80;
 	--btn-bg: var(--arje-ivory);
-	--btn-fg: #111915;
-	--btn-hover: #e2d8c6;
+	--btn-fg: #2a0e16;
+	--btn-hover: #e6dccb;
 	--focus: var(--arje-ivory);
 	--control: rgb(243 237 226 / 0.45);
-	--header-bg: rgb(17 25 21 / 0.76);
-	--field-pine: #1b2f26;
-	--field-bordeaux: #4a1a26;
-	--ph-dim: 0.7;
+	--header-bg: rgb(42 14 22 / 0.78);
+	--field-pine: #1e3429;
+	--field-bordeaux: #4d1a29;
+	--ph-dim: 0.78;
 
 	color-scheme: dark;
 }

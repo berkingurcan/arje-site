@@ -1,6 +1,6 @@
 export type Theme = 'light' | 'dark';
 
-const THEME_COLOR: Record<Theme, string> = { light: '#EEEAE3', dark: '#111915' };
+const THEME_COLOR: Record<Theme, string> = { light: '#EEEAE3', dark: '#2A0E16' };
 
 export const theme = $state<{ value: Theme }>({ value: 'light' });
 

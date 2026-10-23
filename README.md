@@ -64,7 +64,7 @@ Every image slot has a designed placeholder (warm gradient + monogram) underneat
 - **Type**: Noto Serif Display (light, condensed width — display) + Geist (text), both open-source (SIL OFL), self-hosted via Fontsource, with Turkish and Cyrillic coverage. Labels are sentence case; no tracked-out caps.
 - **Symbol**: the continuous-line A·J mark leads the header lockup, signs the footer, and is drawn once as a brass hairline across the hero (the page's single orchestrated motion).
 - **Favicon**: Bordeaux disc with the Ivory symbol (`static/brand/favicon.svg`, 16/32/48 PNG + ICO, 192/512 icons, maskable 512, 180 Apple touch icon).
-- **Themes**: light is the default (per brand guidance the palette is not auto-inverted from the OS setting). Dark is an authored “evening” palette built on deep pine. The choice is remembered per visitor. Tokens are in `src/app.css`.
+- **Themes**: light is the default (per brand guidance the palette is not auto-inverted from the OS setting). Dark is an authored “evening” palette built on deep Bordeaux. The choice is remembered per visitor. Tokens are in `src/app.css`.
 - **Motion**: one hero sequence (symbol line-draw + headline rise), circular theme transition. Language switches swap copy in place with no page-wide transition (the old cross-fade froze the page on every switch); the other languages are preloaded eagerly. All motion is disabled for visitors with *reduce motion* turned on.
 - **Accessibility**: WCAG 2.2 AA contrast on all text pairs, 44px touch targets, visible focus rings, skip link, keyboard-operable menu (Esc closes), labelled form with inline errors.
 
