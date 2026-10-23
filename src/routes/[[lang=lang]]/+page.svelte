@@ -8,6 +8,7 @@
 	import InSitu from '$lib/components/InSitu.svelte';
 	import Trade from '$lib/components/Trade.svelte';
 	import Footer from '$lib/components/Footer.svelte';
+	import Dock from '$lib/components/Dock.svelte';
 	import { dictionaries, locales, localeInfo } from '$lib/i18n';
 	import { syncTheme } from '$lib/theme.svelte';
 	import { site } from '$lib/config';
@@ -72,6 +73,7 @@
 </main>
 
 <Footer {t} {locale} />
+<Dock {t} />
 
 <style>
 	main:focus {

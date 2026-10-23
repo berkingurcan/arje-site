@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { onMount, tick } from 'svelte';
-	import { afterNavigate } from '$app/navigation';
+	import { onMount } from 'svelte';
 	import Monogram from '$lib/brand/Monogram.svelte';
 	import Wordmark from '$lib/brand/Wordmark.svelte';
 	import LangSwitch from './LangSwitch.svelte';
@@ -18,9 +17,6 @@
 
 	let scrolled = $state(false);
 	let hidden = $state(false);
-	let open = $state(false);
-	let menuBtn: HTMLButtonElement | undefined = $state();
-	let firstLink: HTMLAnchorElement | undefined = $state();
 
 	onMount(() => {
 		let lastY = scrollY;
@@ -42,53 +38,14 @@
 		};
 		update();
 		addEventListener('scroll', onScroll, { passive: true });
-		const mq = matchMedia('(min-width: 64rem)');
-		const onMq = () => mq.matches && setOpen(false);
-		mq.addEventListener('change', onMq);
-		return () => {
-			removeEventListener('scroll', onScroll);
-			mq.removeEventListener('change', onMq);
-		};
+		return () => removeEventListener('scroll', onScroll);
 	});
 
-	async function setOpen(next: boolean) {
-		open = next;
-		document.documentElement.style.overflow = next ? 'hidden' : '';
-		if (next) {
-			await tick();
-			firstLink?.focus({ preventScroll: true });
-		}
-	}
-
-	afterNavigate(({ type }) => {
-		if (type !== 'enter' && open) setOpen(false);
-	});
-
-	function go(e: MouseEvent, id: string) {
-		if (!open) return;
-		e.preventDefault();
-		setOpen(false);
-		requestAnimationFrame(() => {
-			document.getElementById(id)?.scrollIntoView({
-				behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
-			});
-		});
-		menuBtn?.focus({ preventScroll: true });
-	}
-
-	function onKey(e: KeyboardEvent) {
-		if (e.key === 'Escape' && open) {
-			setOpen(false);
-			menuBtn?.focus();
-		}
-	}
 </script>
-
-<svelte:window onkeydown={onKey} />
 
 <a class="skip" href="#main">{t.a11y.skip}</a>
 
-<header class="header" class:scrolled class:hidden={hidden && !open} class:open>
+<header class="header" class:scrolled class:hidden>
 	<div class="bar container">
 		<a class="brand" href={localeInfo[locale].path} aria-label={t.a11y.home}>
 			<span class="symbol"><Monogram small /></span>
@@ -104,46 +61,12 @@
 		</nav>
 
 		<div class="tools">
-			<div class="desk-only"><LangSwitch {locale} label={t.a11y.language} /></div>
+			<LangSwitch {locale} label={t.a11y.language} />
 			<ThemeToggle {t} />
 			<a class="btn btn-sm desk-only enquire" href="#trade">{t.ui.enquire}</a>
-			<button
-				bind:this={menuBtn}
-				class="menu-btn"
-				type="button"
-				aria-expanded={open}
-				aria-controls="mobile-menu"
-				aria-label={open ? t.a11y.menuClose : t.a11y.menuOpen}
-				onclick={() => setOpen(!open)}
-			>
-				<span class="burger" aria-hidden="true"><i></i><i></i></span>
-			</button>
 		</div>
 	</div>
 </header>
-
-<div id="mobile-menu" class="sheet" class:open inert={!open} aria-label={t.ui.menu} role="dialog" aria-modal="true">
-	<div class="sheet-inner container">
-		<nav aria-label={t.a11y.mainNav}>
-			<ul>
-				{#each links as l, i (l.id)}
-					<li style="--i:{i}">
-						{#if i === 0}
-							<a bind:this={firstLink} href="#{l.id}" onclick={(e) => go(e, l.id)}>{l.label}</a>
-						{:else}
-							<a href="#{l.id}" onclick={(e) => go(e, l.id)}>{l.label}</a>
-						{/if}
-					</li>
-				{/each}
-			</ul>
-		</nav>
-
-		<div class="sheet-foot" style="--i:4">
-			<LangSwitch {locale} label={t.a11y.language} variant="segmented" />
-			<ThemeToggle {t} variant="segmented" />
-		</div>
-	</div>
-</div>
 
 <style>
 	.skip {
@@ -179,11 +102,6 @@
 		-webkit-backdrop-filter: blur(16px);
 		backdrop-filter: blur(16px);
 		box-shadow: 0 1px 0 var(--line);
-	}
-	.header.open {
-		background: var(--bg);
-		-webkit-backdrop-filter: none;
-		backdrop-filter: none;
 	}
 	.header.hidden {
 		transform: translateY(-100%);
@@ -243,108 +161,14 @@
 	.tools {
 		display: flex;
 		align-items: center;
-		gap: 0.35rem;
-		margin-right: -0.5rem;
+		gap: 0.1rem;
+		margin-right: -0.6rem;
 	}
 	.desk-only {
 		display: none;
 	}
 	.enquire {
 		margin-left: 0.4rem;
-	}
-
-	.menu-btn {
-		display: grid;
-		place-items: center;
-		width: var(--target);
-		height: var(--target);
-		color: var(--ink);
-	}
-	.burger {
-		position: relative;
-		width: 1.35rem;
-		height: 0.55rem;
-	}
-	.burger i {
-		position: absolute;
-		left: 0;
-		right: 0;
-		height: 1.25px;
-		background: currentColor;
-		transition: transform 450ms var(--ease-out);
-	}
-	.burger i:first-child {
-		top: 0;
-	}
-	.burger i:last-child {
-		bottom: 0;
-	}
-	.open .burger i:first-child {
-		transform: translateY(0.25rem) rotate(45deg);
-	}
-	.open .burger i:last-child {
-		transform: translateY(-0.25rem) rotate(-45deg);
-	}
-
-	/* ---------- Mobile sheet ---------- */
-	.sheet {
-		position: fixed;
-		inset: 0;
-		z-index: 55;
-		background: var(--bg);
-		padding-top: calc(var(--header-h) + env(safe-area-inset-top));
-		padding-bottom: env(safe-area-inset-bottom);
-		overflow-y: auto;
-		overscroll-behavior: contain;
-		visibility: hidden;
-		opacity: 0;
-		transition:
-			opacity 350ms var(--ease),
-			visibility 0s linear 350ms;
-	}
-	.sheet.open {
-		visibility: visible;
-		opacity: 1;
-		transition:
-			opacity 350ms var(--ease),
-			visibility 0s;
-	}
-	.sheet-inner {
-		min-height: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		gap: 2.5rem;
-		padding-block: clamp(1.5rem, 5svh, 2.5rem) 1.5rem;
-	}
-	.sheet ul li,
-	.sheet-foot {
-		opacity: 0;
-		transform: translateY(0.75rem);
-		transition:
-			opacity 400ms var(--ease-out),
-			transform 600ms var(--ease-out);
-	}
-	.sheet.open ul li,
-	.sheet.open .sheet-foot {
-		opacity: 1;
-		transform: none;
-		transition-delay: calc(80ms + var(--i) * 50ms);
-	}
-	.sheet ul a {
-		display: block;
-		padding-block: 0.35rem;
-		font-family: var(--font-display);
-		font-weight: 300;
-		font-stretch: var(--display-stretch);
-		font-size: clamp(2.6rem, 12vw, 3.6rem);
-		line-height: 1.05;
-		letter-spacing: -0.015em;
-		color: var(--ink);
-	}
-	.sheet-foot {
-		display: grid;
-		gap: 0.75rem;
 	}
 
 	@media (min-width: 64rem) {
@@ -357,10 +181,6 @@
 		}
 		.enquire {
 			display: inline-flex;
-		}
-		.menu-btn,
-		.sheet {
-			display: none;
 		}
 		.bar {
 			display: grid;

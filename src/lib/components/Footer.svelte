@@ -52,7 +52,7 @@
 <style>
 	.footer {
 		padding-top: clamp(4rem, 9vw, 7rem);
-		padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+		padding-bottom: max(calc(1rem + var(--dock-space)), calc(1rem + env(safe-area-inset-bottom)));
 		border-top: 1px solid var(--line);
 	}
 
@@ -146,7 +146,7 @@
 		margin-right: -0.5rem;
 	}
 	.top {
-		display: grid;
+		display: none;
 		place-items: center;
 		width: var(--target);
 		height: var(--target);
@@ -163,6 +163,9 @@
 	}
 
 	@media (min-width: 64rem) {
+		.top {
+			display: grid;
+		}
 		.main {
 			grid-template-columns: repeat(12, minmax(0, 1fr));
 			column-gap: var(--gutter);

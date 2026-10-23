@@ -66,7 +66,9 @@ Every image slot has a designed placeholder (warm gradient + monogram) underneat
 - **Favicon**: Bordeaux disc with the Ivory symbol (`static/brand/favicon.svg`, 16/32/48 PNG + ICO, 192/512 icons, maskable 512, 180 Apple touch icon).
 - **Themes**: light is the default (per brand guidance the palette is not auto-inverted from the OS setting). Dark is an authored “evening” palette built on deep Bordeaux. The choice is remembered per visitor. Tokens are in `src/app.css`.
 - **Motion**: one hero sequence (symbol line-draw + headline rise), circular theme transition. Language switches swap copy in place with no page-wide transition (the old cross-fade froze the page on every switch); the other languages are preloaded eagerly. All motion is disabled for visitors with *reduce motion* turned on.
-- **Accessibility**: WCAG 2.2 AA contrast on all text pairs, 44px touch targets, visible focus rings, skip link, keyboard-operable menu (Esc closes), labelled form with inline errors.
+- **Mobile (below 1024px)**: app-style bottom tab bar (`Dock.svelte`) with the symbol as the Home tab; it highlights the section in view and slides away while a form field is focused. The header slims to the lockup, language and theme. Safe-area insets and tap feedback are handled throughout.
+- **PWA**: installable (`static/brand/site.webmanifest`, with shortcuts to Collection and For architects) and usable offline via `src/service-worker.ts`: pages are network-first with an offline fallback, app files are precached, and product photos and fonts are cached the first time they're viewed.
+- **Accessibility**: WCAG 2.2 AA contrast on all text pairs, 44px touch targets, visible focus rings, skip link, labelled form with inline errors.
 
 ## Structure
 
@@ -78,7 +80,8 @@ src/
   lib/
     brand/                    Wordmark + Monogram (from the brand handoff)
     components/               Header, Hero, Manifesto, Collection, Approach,
-                              InSitu, Trade (form), Footer, …
+                              InSitu, Trade (form), Footer, Dock (mobile tab bar), …
+  service-worker.ts           offline support / installable app
     i18n/                     tr.ts (source), en.ts, ru.ts
     config.ts                 email, URL, form endpoint
     media.ts                  all imagery in one place

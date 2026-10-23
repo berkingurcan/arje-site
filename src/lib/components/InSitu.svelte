@@ -6,7 +6,7 @@
 	let { t }: { t: Dict } = $props();
 </script>
 
-<section class="section insitu" aria-labelledby="insitu-title">
+<section id="insitu" class="section insitu" aria-labelledby="insitu-title">
 	<div class="container">
 		<h2 id="insitu-title" class="h2 head">{t.inSitu.title}</h2>
 

@@ -8,7 +8,7 @@
 	let { t }: { t: Dict } = $props();
 </script>
 
-<section class="hero reveal" use:reveal aria-labelledby="hero-title">
+<section id="top" class="hero reveal" use:reveal aria-labelledby="hero-title">
 	<div class="container grid12 layout">
 		<span class="line-mark" aria-hidden="true"><Monogram hairline draw /></span>
 
@@ -64,7 +64,7 @@
 		top: -6%;
 		right: -18%;
 		width: 92%;
-		color: var(--accent);
+		color: var(--hero-line);
 		opacity: 0.85;
 		pointer-events: none;
 	}

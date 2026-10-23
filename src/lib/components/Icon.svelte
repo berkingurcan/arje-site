@@ -9,7 +9,11 @@
 		| 'check'
 		| 'instagram'
 		| 'pinterest'
-		| 'linkedin';
+		| 'linkedin'
+		| 'grid'
+		| 'set-square'
+		| 'pencil'
+		| 'mail';
 	let { name, class: klass = '' }: { name: Name; class?: string } = $props();
 </script>
 
@@ -49,6 +53,20 @@
 	{:else if name === 'linkedin'}
 		<rect x="3.5" y="3.5" width="17" height="17" rx="2.5" />
 		<path d="M8 10.5V16.5M8 7.6v.1M11.5 16.5v-6M11.5 13c0-1.6 1-2.6 2.3-2.6s2.2.9 2.2 2.6v3.5" />
+	{:else if name === 'grid'}
+		<rect x="4" y="4" width="6.5" height="6.5" rx="1.2" />
+		<rect x="13.5" y="4" width="6.5" height="6.5" rx="1.2" />
+		<rect x="4" y="13.5" width="6.5" height="6.5" rx="1.2" />
+		<rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.2" />
+	{:else if name === 'set-square'}
+		<path d="M4.5 4.5v15h15Z" />
+		<path d="M8.5 11.3v4.2h4.2Z" />
+	{:else if name === 'pencil'}
+		<path d="M14.8 5.2l4 4L9 19H5v-4Z" />
+		<path d="M12.8 7.2l4 4" />
+	{:else if name === 'mail'}
+		<rect x="3.5" y="5.5" width="17" height="13" rx="2" />
+		<path d="M4 7l8 6 8-6" />
 	{/if}
 </svg>
 

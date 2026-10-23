@@ -37,6 +37,14 @@ const tr = {
 		trade: 'Mimarlar İçin',
 		contact: 'İletişim'
 	},
+	dock: {
+		label: 'Bölümler',
+		home: 'Ana sayfa',
+		collection: 'Koleksiyon',
+		approach: 'Yaklaşım',
+		trade: 'Mimarlar',
+		contact: 'İletişim'
+	},
 	attribution: 'Mimar Arzu Gürcan',
 	attributionLead: 'Tasarım',
 	hero: {

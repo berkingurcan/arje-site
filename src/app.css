@@ -33,6 +33,8 @@
 	--section: clamp(5.5rem, 12vw, 11rem);
 	--gutter: clamp(1rem, 2vw, 2rem);
 	--header-h: 4.25rem;
+	/* Room kept clear for the mobile tab bar. */
+	--dock-space: calc(5.5rem + env(safe-area-inset-bottom));
 
 	/* Shape & motion */
 	--radius: 0;
@@ -52,6 +54,9 @@
 	--line: rgb(46 36 39 / 0.13);
 	--line-strong: rgb(46 36 39 / 0.3);
 	--accent: var(--arje-brass);
+	--hero-line: var(--arje-brass);
+	--dock-bg: rgb(246 243 238 / 0.8);
+	--dock-active: rgb(87 31 45 / 0.1);
 	--btn-bg: var(--arje-bordeaux);
 	--btn-fg: var(--arje-ivory);
 	--btn-hover: var(--arje-bordeaux-deep);
@@ -76,6 +81,9 @@
 	--line: rgb(243 237 226 / 0.12);
 	--line-strong: rgb(243 237 226 / 0.32);
 	--accent: #c9ad80;
+	--hero-line: var(--arje-ivory);
+	--dock-bg: rgb(58 22 36 / 0.78);
+	--dock-active: rgb(243 237 226 / 0.13);
 	--btn-bg: var(--arje-ivory);
 	--btn-fg: #2a0e16;
 	--btn-hover: #e6dccb;
@@ -124,10 +132,18 @@
 }
 
 html {
+	-webkit-tap-highlight-color: transparent;
 	-webkit-text-size-adjust: 100%;
 	text-size-adjust: 100%;
 	scroll-padding-top: calc(var(--header-h) + 1rem);
+	scroll-padding-bottom: var(--dock-space);
 	background: var(--bg);
+}
+
+@media (min-width: 64rem) {
+	:root {
+		--dock-space: 0px;
+	}
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -314,6 +330,18 @@ ol {
 
 .btn:hover {
 	background: var(--btn-hover);
+}
+
+/* Touch feedback: a brief press-in on tap. */
+.btn,
+.link {
+	touch-action: manipulation;
+}
+.btn:active {
+	transform: scale(0.97);
+}
+.btn {
+	transition-property: background-color, color, box-shadow, transform;
 }
 
 .btn-ghost {

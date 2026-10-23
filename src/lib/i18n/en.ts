@@ -35,6 +35,14 @@ const en: Dict = {
 		trade: 'For Architects',
 		contact: 'Contact'
 	},
+	dock: {
+		label: 'Sections',
+		home: 'Home',
+		collection: 'Collection',
+		approach: 'Approach',
+		trade: 'Architects',
+		contact: 'Contact'
+	},
 	attribution: 'Architect Arzu Gürcan',
 	attributionLead: 'Designed by',
 	hero: {

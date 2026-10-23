@@ -35,6 +35,14 @@ const ru: Dict = {
 		trade: 'Архитекторам',
 		contact: 'Контакты'
 	},
+	dock: {
+		label: 'Разделы',
+		home: 'Главная',
+		collection: 'Коллекция',
+		approach: 'Подход',
+		trade: 'Проекты',
+		contact: 'Контакты'
+	},
 	attribution: 'Архитектор Арзу Гюрджан',
 	attributionLead: 'Автор',
 	hero: {
