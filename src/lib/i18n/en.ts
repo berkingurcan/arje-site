@@ -48,7 +48,7 @@ const en: Dict = {
 	hero: {
 		eyebrow: 'Designer objects for the home',
 		title: [{ text: 'Objects' }, { text: 'of quiet', em: true }, { text: 'presence.' }],
-		lead: 'Sculptural forms, enduring lines. A personal expression of home, by architect Arzu Gürcan.',
+		lead: 'Unique designs by architect Arzu Gürcan, inspired by nature and tailored to each person and space.',
 		ctaPrimary: 'Explore the collection',
 		ctaSecondary: 'For architects',
 		caption: 'First collection in preparation',
@@ -81,10 +81,8 @@ const en: Dict = {
 		items: {
 			masa: { type: 'Table sculpture', name: 'Masa', alt: 'Looping cream ceramic sculpture styled with yellow flowers' },
 			duvar: { type: 'Wall light', name: 'Duvar', alt: 'Terracotta wall light with radiating ridges around a white globe' },
-			renko: { type: 'Decorative dish', name: 'Renko', alt: 'Speckled ceramic dish with an irregular rim' },
 			saksi: { type: 'Wall planter', name: 'Saksı', alt: 'Blue planter with pink flowers on a speckled white ceramic panel' },
 			kitap: { type: 'Book holder', name: 'Kitap', alt: 'Speckled ceramic ribbon styled with yellow flowers' },
-			bahce: { type: 'Garden sculpture', name: 'Bahçe', alt: 'Ring-shaped white ceramic sculpture with foliage on a lawn' },
 			smallLeaf: { type: 'Ceramic object', name: 'Small Leaf', alt: 'Small green ceramic leaf with a gold-colored rim' },
 			heartLeaf: { type: 'Ceramic object', name: 'Heart Leaf', alt: 'Heart-shaped green ceramic leaf with a gold-colored rim' },
 			terracottaFlower: { type: 'Ceramic object', name: 'Terracotta Flower', alt: 'Orange flower-shaped ceramic piece with a white globe' },
@@ -111,10 +109,8 @@ const en: Dict = {
 		],
 		caption: 'Light, shadow and form'
 	},
-	inSitu: {
-		eyebrow: 'In situ',
-		title: 'Pieces that complete the character of a room.',
-		captions: ['Living room', 'Console', 'Reading corner']
+	gallery: {
+		title: 'Form and color in ceramics'
 	},
 	trade: {
 		eyebrow: 'For architects & interior designers',
@@ -153,12 +149,7 @@ const en: Dict = {
 	alt: {
 		hero: 'Sculptural open-form cream ceramic vase with yellow flowers',
 		approach: 'Blue planter with yellow flowers on a speckled white ceramic panel',
-		approachDetail: 'Cream ceramic platter with purple flowers and a wavy rim',
-		inSitu: [
-			'A bright living room with a large window',
-			'A wooden sideboard styled with objects',
-			'A table lamp beside a stack of books'
-		]
+		approachDetail: 'Orange flower-shaped ceramic piece with a white globe'
 	},
 	footer: {
 		tagline: 'Objects of quiet presence.',
@@ -166,7 +157,6 @@ const en: Dict = {
 		emailLabel: 'Email',
 		exploreTitle: 'Explore',
 		rights: 'All rights reserved.',
-		credit: 'Interior photography: Unsplash',
 		social: 'Social media',
 		follow: 'Follow ARJE',
 		emailNote: 'Project enquiries and press'

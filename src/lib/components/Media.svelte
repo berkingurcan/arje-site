@@ -22,7 +22,7 @@
 
 	let status = $state<'loading' | 'loaded' | 'error'>('loading');
 	let img: HTMLImageElement | undefined = $state();
-	const set = $derived(imageSet(item, ratio));
+	const set = $derived(imageSet(item.src));
 
 	onMount(() => {
 		// The image may have settled before hydration.
@@ -45,7 +45,6 @@
 		loading={eager ? 'eager' : 'lazy'}
 		fetchpriority={eager ? 'high' : 'auto'}
 		decoding="async"
-		style:object-position={item.focus}
 		onload={() => (status = 'loaded')}
 		onerror={() => (status = 'error')}
 	/>

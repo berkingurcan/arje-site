@@ -38,7 +38,6 @@
 			<p class="legal">
 				<span>© {site.year} ARJE</span>
 				<span>{t.attributionLead} {t.attribution}</span>
-				<span class="credit">{t.footer.credit}</span>
 			</p>
 			<div class="prefs">
 				<LangSwitch {locale} label={t.a11y.language} />

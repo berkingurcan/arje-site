@@ -53,7 +53,7 @@ const tr = {
 			{ text: 'duruşlu', em: true },
 			{ text: 'nesneler.' }
 		],
-		lead: 'Heykelsi formlar, kalıcı çizgiler. Mimar Arzu Gürcan’dan eve dair kişisel bir yorum.',
+		lead: 'Doğadan ilham alan, eşsiz, kişiye ve mekâna özel, Mimar Arzu Gürcan’dan tasarımlar.',
 		ctaPrimary: 'Koleksiyonu keşfedin',
 		ctaSecondary: 'Mimarlar için',
 		caption: 'İlk koleksiyon hazırlanıyor',
@@ -86,10 +86,8 @@ const tr = {
 		items: {
 			masa: { type: 'Masa objesi', name: 'Masa', alt: 'Sarı çiçeklerle süslenmiş, kıvrımlı krem seramik obje' },
 			duvar: { type: 'Duvar apliği', name: 'Duvar', alt: 'Beyaz küreli, güneş ışınları gibi çizgili terrakota aplik' },
-			renko: { type: 'Dekoratif tabak', name: 'Renko', alt: 'Düzensiz kenarlı, benekli seramik tabak' },
 			saksi: { type: 'Duvar saksısı', name: 'Saksı', alt: 'Benekli beyaz seramik levha üzerinde pembe çiçekli mavi saksı' },
 			kitap: { type: 'Kitap tutucu', name: 'Kitap', alt: 'Sarı çiçeklerle süslenmiş, şerit gibi kıvrılan benekli seramik' },
-			bahce: { type: 'Bahçe heykeli', name: 'Bahçe', alt: 'Çimlerin üzerinde, yapraklarla süslenmiş, halka biçiminde beyaz seramik' },
 			smallLeaf: { type: 'Seramik obje', name: 'Küçük Yaprak', alt: 'Altın renkli kenarlı, küçük yeşil seramik yaprak' },
 			heartLeaf: { type: 'Seramik obje', name: 'Kalp Yaprak', alt: 'Altın renkli kenarlı, kalp biçiminde yeşil seramik yaprak' },
 			terracottaFlower: { type: 'Seramik obje', name: 'Terrakota Çiçek', alt: 'Ortası beyaz küreli, çiçek biçiminde turuncu seramik' },
@@ -116,10 +114,8 @@ const tr = {
 		],
 		caption: 'Işık, gölge ve form'
 	},
-	inSitu: {
-		eyebrow: 'Mekânda',
-		title: 'Bir odanın karakterini tamamlayan parçalar.',
-		captions: ['Salon', 'Konsol', 'Okuma köşesi']
+	gallery: {
+		title: 'Seramikte form ve renk'
 	},
 	trade: {
 		eyebrow: 'Mimarlar ve iç mimarlar için',
@@ -158,12 +154,7 @@ const tr = {
 	alt: {
 		hero: 'Sarı çiçeklerle süslenmiş, heykelsi ve açık formlu krem seramik vazo',
 		approach: 'Benekli beyaz seramik levha üzerinde sarı çiçekli mavi saksı',
-		approachDetail: 'Mor çiçek desenli, dalgalı kenarlı krem seramik tabak',
-		inSitu: [
-			'Geniş pencereli, aydınlık bir oturma odası',
-			'Ahşap bir konsol ve üzerindeki dekoratif objeler',
-			'Bir masa lambası ve kitaplar'
-		]
+		approachDetail: 'Ortası beyaz küreli, çiçek biçiminde turuncu seramik'
 	},
 	footer: {
 		tagline: 'Sessiz duruşlu nesneler.',
@@ -171,7 +162,6 @@ const tr = {
 		emailLabel: 'E-posta',
 		exploreTitle: 'Keşfedin',
 		rights: 'Tüm hakları saklıdır.',
-		credit: 'İç mekân fotoğrafları: Unsplash',
 		social: 'Sosyal medya',
 		follow: 'ARJE’yi takip edin',
 		emailNote: 'Proje talepleri ve basın için'

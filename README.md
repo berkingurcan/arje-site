@@ -49,9 +49,9 @@ To receive submissions directly, create a form endpoint (Formspree, Basin, a Mak
 
 ## Images
 
-Product photography is served from `static/images/products/`. The new studio photos use 640 and 1122 px WebP variants in `static/images/products/studio/`. The interior photographs in the In situ section are from Unsplash.
+The site serves studio photography as 640 and 1122 px WebP variants from `static/images/products/studio/`.
 
-To add a piece, put its images in `static/images/products/` and add its ID and image path to `products` in `src/lib/media.ts`. Use the same ID in `collection.items` in each language file for the name, type and alt text.
+To add a piece, put its WebP variants in that folder and add its ID and image base name to `products` in `src/lib/media.ts`. Use the same ID in `collection.items` in each language file for the name, type and alt text.
 
 Every image slot has a designed placeholder (warm gradient + monogram) underneath, so the layout never breaks while images load or if one fails.
 
@@ -77,7 +77,7 @@ src/
   lib/
     brand/                    Wordmark + Monogram (from the brand handoff)
     components/               Header, Hero, Manifesto, Collection, Approach,
-                              InSitu, Trade (form), Footer, Dock (mobile tab bar), …
+                              Gallery, Trade (form), Footer, Dock (mobile tab bar), …
   service-worker.ts           offline support / installable app
     i18n/                     tr.ts (source), en.ts, ru.ts
     config.ts                 email, URL, form endpoint

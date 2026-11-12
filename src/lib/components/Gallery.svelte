@@ -1,27 +1,28 @@
 <script lang="ts">
 	import Media from './Media.svelte';
-	import { media } from '$lib/media';
+	import { gallery } from '$lib/media';
 	import type { Dict } from '$lib/i18n';
 
 	let { t }: { t: Dict } = $props();
 </script>
 
-<section id="insitu" class="section insitu" aria-labelledby="insitu-title">
+<section id="insitu" class="section" aria-labelledby="gallery-title">
 	<div class="container">
-		<h2 id="insitu-title" class="h2 head">{t.inSitu.title}</h2>
+		<h2 id="gallery-title" class="h2 head">{t.gallery.title}</h2>
 
 		<div class="mosaic">
-			{#each media.inSitu as item, i (i)}
+			{#each gallery as { id, photo }, i (id)}
+				{@const item = t.collection.items[id]}
 				<figure class="tile t{i}">
 					<div>
 						<Media
-							{item}
-							alt={t.alt.inSitu[i]}
+							item={photo}
+							alt={item.alt}
 							ratio={i === 0 ? 4 / 5 : 3 / 4}
 							sizes={i === 0 ? '(min-width: 64rem) 58vw, 100vw' : '(min-width: 64rem) 28vw, 50vw'}
 						/>
 					</div>
-					<figcaption class="label">{t.inSitu.captions[i]}</figcaption>
+					<figcaption class="label">{item.name}</figcaption>
 				</figure>
 			{/each}
 		</div>

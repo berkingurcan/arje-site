@@ -5,7 +5,7 @@
 	import Manifesto from '$lib/components/Manifesto.svelte';
 	import Collection from '$lib/components/Collection.svelte';
 	import Approach from '$lib/components/Approach.svelte';
-	import InSitu from '$lib/components/InSitu.svelte';
+	import Gallery from '$lib/components/Gallery.svelte';
 	import Trade from '$lib/components/Trade.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import Dock from '$lib/components/Dock.svelte';
@@ -68,7 +68,7 @@
 	<Manifesto {t} />
 	<Collection {t} />
 	<Approach {t} />
-	<InSitu {t} />
+	<Gallery {t} />
 	<Trade {t} />
 </main>
 
