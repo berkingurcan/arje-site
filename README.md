@@ -40,7 +40,7 @@ Copy lives in `src/lib/i18n/tr.ts`, `en.ts`, `ru.ts` — the English and Russian
 | Contact email (currently `info@arje.com.tr`, **placeholder**) | `src/lib/config.ts` → `email` |
 | Production URL | `src/lib/config.ts` → `url` |
 | Social links (Instagram, Pinterest, LinkedIn — **placeholder URLs**) | `src/lib/config.ts` → `social` |
-| Product names (“Form I … Form V” are working titles) | `collection.items` in each `src/lib/i18n/*.ts` |
+| Product names and descriptions | `collection.items` in each `src/lib/i18n/*.ts` |
 
 ### Enquiry form
 
@@ -49,12 +49,9 @@ To receive submissions directly, create a form endpoint (Formspree, Basin, a Mak
 
 ## Images
 
-All imagery is **temporary** (Unsplash, free licence) and listed in one place: `src/lib/media.ts`.
-To use real product photography:
+Product photography is served from `static/images/products/`. The new studio photos use 640 and 1122 px WebP variants in `static/images/products/studio/`. The interior photographs in the In situ section are from Unsplash.
 
-1. Put files in `static/images/` (e.g. `static/images/form-i.jpg`, ideally ≥ 2000 px wide, sRGB).
-2. In `src/lib/media.ts`, change `src: 'photo-…'` to `src: '/images/form-i.jpg'`.
-3. Update the alt texts under `alt` in each language file, and remove the “Representative image” tags/note in `collection` if no longer needed.
+To add a piece, put its images in `static/images/products/` and add its ID and image path to `products` in `src/lib/media.ts`. Use the same ID in `collection.items` in each language file for the name, type and alt text.
 
 Every image slot has a designed placeholder (warm gradient + monogram) underneath, so the layout never breaks while images load or if one fails.
 

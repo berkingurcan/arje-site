@@ -2,12 +2,18 @@
 	import { tick } from 'svelte';
 	import Icon from './Icon.svelte';
 	import { enquiry } from '$lib/enquiry.svelte';
+	import { products } from '$lib/media';
 	import { site } from '$lib/config';
 	import type { Dict } from '$lib/i18n';
 
 	let { t }: { t: Dict } = $props();
 	const f = $derived(t.trade.form);
-	const objects = $derived(t.collection.items.map((it) => `${it.type} — ${it.name}`));
+	const objects = $derived(
+		products.map(({ id }) => {
+			const { type, name } = t.collection.items[id];
+			return `${type} — ${name}`;
+		})
+	);
 
 	let name = $state('');
 	let email = $state('');

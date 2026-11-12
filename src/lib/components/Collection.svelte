@@ -3,7 +3,7 @@
 	import Media from './Media.svelte';
 	import Icon from './Icon.svelte';
 	import Monogram from '$lib/brand/Monogram.svelte';
-	import { media, isOwn } from '$lib/media';
+	import { products } from '$lib/media';
 	import { enquiry } from '$lib/enquiry.svelte';
 	import type { Dict } from '$lib/i18n';
 
@@ -60,22 +60,21 @@
 	</div>
 
 	<ul class="track" bind:this={track} onscroll={measure} aria-label={t.collection.title}>
-		{#each t.collection.items as item, i (i)}
+		{#each products as { id, photo } (id)}
+			{@const item = t.collection.items[id]}
 			{@const label = `${item.type}, ${item.name}`}
-			{@const own = isOwn(media.objects[i].src)}
 			<li class="card">
-				<article aria-labelledby="obj-{i}">
+				<article aria-labelledby="obj-{id}">
 					<div class="card-media">
 						<Media
-							item={media.objects[i]}
-							alt={own ? label : `${label} (${t.collection.representative})`}
+							item={photo}
+							alt={item.alt}
 							ratio={4 / 5}
 							sizes="(min-width: 64rem) 28vw, (min-width: 48rem) 45vw, 80vw"
-							tag={own ? '' : t.collection.representative}
 						/>
 					</div>
 					<div class="card-body">
-						<h3 id="obj-{i}" class="name">{item.name}</h3>
+						<h3 id="obj-{id}" class="name">{item.name}</h3>
 						<p class="type">{item.type}</p>
 						<p class="status">{t.collection.status}</p>
 						<a class="req" href="#trade" onclick={() => ask(`${item.type} — ${item.name}`)}>
@@ -189,6 +188,7 @@
 		padding-top: 1rem;
 	}
 	.name {
+		grid-column: 1 / -1;
 		font-family: var(--font-display);
 		font-weight: 300;
 		font-stretch: var(--display-stretch);
@@ -197,9 +197,9 @@
 		color: var(--ink);
 	}
 	.type {
+		grid-column: 1 / -1;
 		font-size: var(--fs-small);
 		color: var(--muted);
-		text-align: right;
 	}
 	.status {
 		font-size: var(--fs-small);

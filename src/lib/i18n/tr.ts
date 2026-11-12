@@ -1,7 +1,6 @@
-/**
- * Türkçe — varsayılan dil.
- * Ürün adları ("Form I" vb.) çalışma adıdır; gerçek koleksiyon bilgileri gelince güncelleyin.
- */
+import type { ProductId } from '$lib/media';
+
+/** Türkçe — varsayılan dil. */
 const tr = {
 	meta: {
 		title: 'ARJE — Mimar Arzu Gürcan | Tasarım Ev Objeleri',
@@ -83,16 +82,25 @@ const tr = {
 		note: 'İlk koleksiyon hazırlanıyor. Fiyat, ölçü ve malzeme bilgisi talep üzerine.',
 		status: 'Fiyat talep üzerine',
 		request: 'Bilgi isteyin',
-		representative: 'Temsilî görsel',
 		swipe: 'Kaydırarak keşfedin',
-		items: [
-			{ type: 'Masa objesi', name: 'Masa' },
-			{ type: 'Duvar apliği', name: 'Duvar' },
-			{ type: 'Dekoratif tabak', name: 'Renko' },
-			{ type: 'Duvar saksısı', name: 'Saksı' },
-			{ type: 'Kitap tutucu', name: 'Kitap' },
-			{ type: 'Bahçe heykeli', name: 'Bahçe' }
-		],
+		items: {
+			masa: { type: 'Masa objesi', name: 'Masa', alt: 'Sarı çiçeklerle süslenmiş, kıvrımlı krem seramik obje' },
+			duvar: { type: 'Duvar apliği', name: 'Duvar', alt: 'Beyaz küreli, güneş ışınları gibi çizgili terrakota aplik' },
+			renko: { type: 'Dekoratif tabak', name: 'Renko', alt: 'Düzensiz kenarlı, benekli seramik tabak' },
+			saksi: { type: 'Duvar saksısı', name: 'Saksı', alt: 'Benekli beyaz seramik levha üzerinde pembe çiçekli mavi saksı' },
+			kitap: { type: 'Kitap tutucu', name: 'Kitap', alt: 'Sarı çiçeklerle süslenmiş, şerit gibi kıvrılan benekli seramik' },
+			bahce: { type: 'Bahçe heykeli', name: 'Bahçe', alt: 'Çimlerin üzerinde, yapraklarla süslenmiş, halka biçiminde beyaz seramik' },
+			smallLeaf: { type: 'Seramik obje', name: 'Küçük Yaprak', alt: 'Altın renkli kenarlı, küçük yeşil seramik yaprak' },
+			heartLeaf: { type: 'Seramik obje', name: 'Kalp Yaprak', alt: 'Altın renkli kenarlı, kalp biçiminde yeşil seramik yaprak' },
+			terracottaFlower: { type: 'Seramik obje', name: 'Terrakota Çiçek', alt: 'Ortası beyaz küreli, çiçek biçiminde turuncu seramik' },
+			purplePlatter: { type: 'Dekoratif tabak', name: 'Mor Çiçekler', alt: 'Mor çiçek desenli, dalgalı kenarlı krem seramik tabak' },
+			longLeaf: { type: 'Dekoratif tabak', name: 'Uzun Yaprak', alt: 'Yeşil yaprak desenli, ince ve uzun seramik tabak' },
+			polkaDotVase: { type: 'Seramik vazo', name: 'Puantiyeli Vazo', alt: 'Beyaz puantiyeli, dalgalı beyaz ağızlı yeşil seramik vazo' },
+			cobaltLeaf: { type: 'Seramik obje', name: 'Kobalt Yaprak', alt: 'Yaprak damarları belirgin, kobalt mavisi seramik yaprak' },
+			bluePlatter: { type: 'Dekoratif tabak', name: 'Mavi Dallar', alt: 'Mavi yaprak desenli, altın renkli kenarlı krem seramik tabak' },
+			speckledWave: { type: 'Seramik obje', name: 'Benekli Dalga', alt: 'Ortası beyaz küreli, dalga biçiminde benekli seramik' },
+			creamLeaf: { type: 'Seramik obje', name: 'Krem Yaprak', alt: 'Ortası beyaz küreli, altın renkli kenarlı krem seramik yaprak' }
+		} satisfies Record<ProductId, { type: string; name: string; alt: string }>,
 		endTitle: 'Koleksiyonun tamamı',
 		endText: 'Yeni parçalar eklendikçe ilk siz haberdar olun.',
 		endCta: 'Haber verin'
@@ -148,9 +156,9 @@ const tr = {
 		}
 	},
 	alt: {
-		hero: 'Taş bir duvarda, bakır sırlı seramik disk ve cam küreden oluşan Duvar apliği',
-		approach: 'Güçlü gölgeler düşen taş sütunlar',
-		approachDetail: 'Ahşap bir yüzeyde toprak tonlarında seramik vazolar',
+		hero: 'Sarı çiçeklerle süslenmiş, heykelsi ve açık formlu krem seramik vazo',
+		approach: 'Benekli beyaz seramik levha üzerinde sarı çiçekli mavi saksı',
+		approachDetail: 'Mor çiçek desenli, dalgalı kenarlı krem seramik tabak',
 		inSitu: [
 			'Geniş pencereli, aydınlık bir oturma odası',
 			'Ahşap bir konsol ve üzerindeki dekoratif objeler',
@@ -163,7 +171,7 @@ const tr = {
 		emailLabel: 'E-posta',
 		exploreTitle: 'Keşfedin',
 		rights: 'Tüm hakları saklıdır.',
-		credit: 'Geçici görseller: Unsplash',
+		credit: 'İç mekân fotoğrafları: Unsplash',
 		social: 'Sosyal medya',
 		follow: 'ARJE’yi takip edin',
 		emailNote: 'Proje talepleri ve basın için'

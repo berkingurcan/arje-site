@@ -9,7 +9,6 @@
 		ratio = 4 / 5,
 		sizes = '100vw',
 		eager = false,
-		tag = '',
 		class: klass = ''
 	}: {
 		item: MediaItem;
@@ -18,13 +17,12 @@
 		ratio?: number;
 		sizes?: string;
 		eager?: boolean;
-		tag?: string;
 		class?: string;
 	} = $props();
 
 	let status = $state<'loading' | 'loaded' | 'error'>('loading');
 	let img: HTMLImageElement | undefined = $state();
-	const set = $derived(imageSet(item.src, ratio));
+	const set = $derived(imageSet(item, ratio));
 
 	onMount(() => {
 		// The image may have settled before hydration.
@@ -51,7 +49,6 @@
 		onload={() => (status = 'loaded')}
 		onerror={() => (status = 'error')}
 	/>
-	{#if tag}<span class="tag">{tag}</span>{/if}
 </div>
 
 <style>
@@ -143,21 +140,5 @@
 	}
 	.media[data-status='error'] img {
 		display: none;
-	}
-
-	.tag {
-		position: absolute;
-		left: 0.75rem;
-		top: 0.75rem;
-		z-index: 2;
-		padding: 0.35rem 0.7rem;
-		border-radius: var(--pill);
-		background: rgb(246 243 238 / 0.82);
-		-webkit-backdrop-filter: blur(8px);
-		backdrop-filter: blur(8px);
-		color: #2e2427;
-		font-size: 0.75rem;
-		font-weight: 500;
-		line-height: 1.2;
 	}
 </style>

@@ -6,3 +6,7 @@ node_modules
 .env
 .env.*
 !.env.example
+
+# Original studio photos. The site uses WebP files in static/images/products/studio/.
+/ceramics_studio_10_high_quality_png/
+/ceramics_studio_v2_high_quality/
