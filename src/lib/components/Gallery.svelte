@@ -11,18 +11,17 @@
 		<h2 id="gallery-title" class="h2 head">{t.gallery.title}</h2>
 
 		<div class="mosaic">
-			{#each gallery as { id, photo }, i (id)}
-				{@const item = t.collection.items[id]}
+			{#each gallery as { id, code, photo }, i (id)}
 				<figure class="tile t{i}">
 					<div>
 						<Media
 							item={photo}
-							alt={item.alt}
+							alt={t.collection.productAlt[id]}
 							ratio={i === 0 ? 4 / 5 : 3 / 4}
 							sizes={i === 0 ? '(min-width: 64rem) 58vw, 100vw' : '(min-width: 64rem) 28vw, 50vw'}
 						/>
 					</div>
-					<figcaption class="label">{item.name}</figcaption>
+					<figcaption class="label">{code}</figcaption>
 				</figure>
 			{/each}
 		</div>

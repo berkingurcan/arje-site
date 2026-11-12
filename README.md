@@ -40,7 +40,6 @@ Copy lives in `src/lib/i18n/tr.ts`, `en.ts`, `ru.ts` — the English and Russian
 | Contact email (currently `info@arje.com.tr`, **placeholder**) | `src/lib/config.ts` → `email` |
 | Production URL | `src/lib/config.ts` → `url` |
 | Social links (Instagram, Pinterest, LinkedIn — **placeholder URLs**) | `src/lib/config.ts` → `social` |
-| Product names and descriptions | `collection.items` in each `src/lib/i18n/*.ts` |
 
 ### Enquiry form
 
@@ -51,7 +50,7 @@ To receive submissions directly, create a form endpoint (Formspree, Basin, a Mak
 
 The site serves studio photography as 640 and 1122 px WebP variants from `static/images/products/studio/`.
 
-To add a piece, put its WebP variants in that folder and add its ID and image base name to `products` in `src/lib/media.ts`. Use the same ID in `collection.items` in each language file for the name, type and alt text.
+To add a piece, put its WebP variants in that folder and add its ID, unique product code, category and image base name to `products` in `src/lib/media.ts`. Use the same ID in `collection.productAlt` in each language file for the image description.
 
 Every image slot has a designed placeholder (warm gradient + monogram) underneath, so the layout never breaks while images load or if one fails.
 

@@ -2,9 +2,9 @@ import type { Dict } from './tr';
 
 const en: Dict = {
 	meta: {
-		title: 'ARJE — by architect Arzu Gürcan | Designer Home Objects',
+		title: 'ARJE — by architect Arzu Gürcan | Designer Objects for Your Spaces',
 		description:
-			'ARJE is a boutique design house by architect Arzu Gürcan. Sculptural forms, enduring lines and home objects of quiet presence.',
+			'ARJE is a design studio by architect Arzu Gürcan. Sculptural forms, enduring lines and objects of quiet presence for your spaces.',
 		ogLocale: 'en_US'
 	},
 	a11y: {
@@ -46,7 +46,7 @@ const en: Dict = {
 	attribution: 'Architect Arzu Gürcan',
 	attributionLead: 'Designed by',
 	hero: {
-		eyebrow: 'Designer objects for the home',
+		eyebrow: 'Designer objects for your spaces',
 		title: [{ text: 'Objects' }, { text: 'of quiet', em: true }, { text: 'presence.' }],
 		lead: 'Unique designs by architect Arzu Gürcan, inspired by nature and tailored to each person and space.',
 		ctaPrimary: 'Explore the collection',
@@ -67,7 +67,7 @@ const en: Dict = {
 			},
 			{
 				word: 'Kept.',
-				text: 'Not seasonal, but lasting. Objects that, over the years, become part of a home’s memory.'
+				text: 'Not seasonal, but lasting. Objects that become part of the memory of your spaces over the years.'
 			}
 		]
 	},
@@ -78,21 +78,24 @@ const en: Dict = {
 		status: 'Price on request',
 		request: 'Request details',
 		swipe: 'Swipe to explore',
-		items: {
-			masa: { type: 'Table sculpture', name: 'Masa', alt: 'Looping cream ceramic sculpture styled with yellow flowers' },
-			duvar: { type: 'Wall light', name: 'Duvar', alt: 'Terracotta wall light with radiating ridges around a white globe' },
-			saksi: { type: 'Wall planter', name: 'Saksı', alt: 'Blue planter with pink flowers on a speckled white ceramic panel' },
-			kitap: { type: 'Book holder', name: 'Kitap', alt: 'Speckled ceramic ribbon styled with yellow flowers' },
-			smallLeaf: { type: 'Ceramic object', name: 'Small Leaf', alt: 'Small green ceramic leaf with a gold-colored rim' },
-			heartLeaf: { type: 'Ceramic object', name: 'Heart Leaf', alt: 'Heart-shaped green ceramic leaf with a gold-colored rim' },
-			terracottaFlower: { type: 'Ceramic object', name: 'Terracotta Flower', alt: 'Orange flower-shaped ceramic piece with a white globe' },
-			purplePlatter: { type: 'Decorative dish', name: 'Purple Blooms', alt: 'Cream ceramic platter with purple flowers and a wavy rim' },
-			longLeaf: { type: 'Decorative dish', name: 'Long Leaf', alt: 'Narrow ceramic dish with a green leaf pattern' },
-			polkaDotVase: { type: 'Ceramic vase', name: 'Polka Dot Vase', alt: 'Green vase with white dots and a ruffled white rim' },
-			cobaltLeaf: { type: 'Ceramic object', name: 'Cobalt Leaf', alt: 'Cobalt blue ceramic leaf with raised veins' },
-			bluePlatter: { type: 'Decorative dish', name: 'Blue Sprigs', alt: 'Cream ceramic platter with a gold-colored rim and blue foliage' },
-			speckledWave: { type: 'Ceramic object', name: 'Speckled Wave', alt: 'Speckled ceramic wave with a white globe in the center' },
-			creamLeaf: { type: 'Ceramic object', name: 'Cream Leaf', alt: 'Cream ceramic leaf with a gold-colored rim and a white globe' }
+		filterLabel: 'Product categories',
+		all: 'All',
+		categories: { sconce: 'Wall light', decor: 'Decorative object', plate: 'Plate' },
+		productAlt: {
+			masa: 'Looping cream ceramic sculpture styled with yellow flowers',
+			duvar: 'Terracotta wall light with radiating ridges around a white globe',
+			saksi: 'Blue planter with pink flowers on a speckled white ceramic panel',
+			kitap: 'Speckled ceramic ribbon styled with yellow flowers',
+			smallLeaf: 'Small green ceramic leaf with a gold-colored rim',
+			heartLeaf: 'Heart-shaped green ceramic leaf with a gold-colored rim',
+			terracottaFlower: 'Orange flower-shaped ceramic piece with a white globe',
+			purplePlatter: 'Cream ceramic platter with purple flowers and a wavy rim',
+			longLeaf: 'Narrow ceramic dish with a green leaf pattern',
+			polkaDotVase: 'Green vase with white dots and a ruffled white rim',
+			cobaltLeaf: 'Cobalt blue ceramic leaf with raised veins',
+			bluePlatter: 'Cream ceramic platter with a gold-colored rim and blue foliage',
+			speckledWave: 'Speckled ceramic wave with a white globe in the center',
+			creamLeaf: 'Cream ceramic leaf with a gold-colored rim and a white globe'
 		},
 		endTitle: 'The full collection',
 		endText: 'Be the first to know as new pieces arrive.',
@@ -105,7 +108,7 @@ const en: Dict = {
 		pillars: [
 			{ title: 'Proportion', text: 'Measure and balance, set with an architect’s discipline.' },
 			{ title: 'Material', text: 'Surfaces chosen for their texture, their weight and the character they gain over time.' },
-			{ title: 'Authorship', text: 'Each piece carries its designer’s personal view of home.' }
+			{ title: 'Authorship', text: 'Each piece reflects its designer’s personal view of space.' }
 		],
 		caption: 'Light, shadow and form'
 	},
@@ -115,14 +118,14 @@ const en: Dict = {
 	trade: {
 		eyebrow: 'For architects & interior designers',
 		title: [{ text: 'Let’s curate' }, { text: 'for your project.', em: true }],
-		lead: 'We value working alongside architects and interior designers on residential and boutique hospitality projects. Tell us about your project, and we’ll share suitable pieces with dimensions and material details.',
+		lead: 'We value the chance to collaborate on your projects. Tell us what you’re working on, and we’ll share suitable pieces with dimensions and material details.',
 		topics: ['Project-specific curation', 'Dimensions & material details', 'Lead times & availability'],
 		form: {
 			name: 'Full name',
 			email: 'Work email',
 			studio: 'Studio / firm',
 			projectType: 'Project type',
-			projectTypes: ['Residential', 'Boutique hospitality', 'Office / commercial', 'Other'],
+			projectTypes: ['Residential', 'Hotel', 'Café / restaurant', 'Office / commercial', 'Other'],
 			object: 'Piece of interest',
 			objectAny: 'Not decided yet',
 			message: 'Message',

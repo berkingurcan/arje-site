@@ -2,24 +2,16 @@
 	import { tick } from 'svelte';
 	import Icon from './Icon.svelte';
 	import { enquiry } from '$lib/enquiry.svelte';
-	import { products } from '$lib/media';
+	import { productCategories, products } from '$lib/media';
 	import { site } from '$lib/config';
 	import type { Dict } from '$lib/i18n';
 
 	let { t }: { t: Dict } = $props();
 	const f = $derived(t.trade.form);
-	const objects = $derived(
-		products.map(({ id }) => {
-			const { type, name } = t.collection.items[id];
-			return `${type} — ${name}`;
-		})
-	);
-
 	let name = $state('');
 	let email = $state('');
 	let studio = $state('');
 	let projectType = $state('');
-	let object = $state('');
 	let message = $state('');
 	let consent = $state(false);
 
@@ -30,11 +22,6 @@
 	let done = $state<'' | 'sent' | 'mailed'>('');
 	let formEl: HTMLFormElement | undefined = $state();
 	let resultEl: HTMLDivElement | undefined = $state();
-
-	// "Request details" on a product card pre-selects it here.
-	$effect(() => {
-		object = enquiry.object;
-	});
 
 	function validate() {
 		const e: typeof errors = {};
@@ -66,7 +53,9 @@
 			return;
 		}
 
-		const data = { name, email, studio, projectType, object: object || f.objectAny, message };
+		const product = products.find(({ code }) => code === enquiry.object);
+		const objectLabel = product ? `${t.collection.categories[product.category]} — ${product.code}` : f.objectAny;
+		const data = { name, email, studio, projectType, object: objectLabel, message };
 
 		if (site.formEndpoint) {
 			sending = true;
@@ -101,7 +90,7 @@
 	}
 
 	function reset() {
-		name = email = studio = projectType = object = message = '';
+		name = email = studio = projectType = message = '';
 		consent = false;
 		attempted = false;
 		errors = {};
@@ -190,9 +179,15 @@
 					<div class="field full">
 						<label for="f-object">{f.object} <span class="opt">({f.optional})</span></label>
 						<div class="select">
-							<select id="f-object" name="object" bind:value={object}>
+							<select id="f-object" name="object" bind:value={enquiry.object}>
 								<option value="">{f.objectAny}</option>
-								{#each objects as o (o)}<option value={o}>{o}</option>{/each}
+								{#each productCategories as category (category)}
+									<optgroup label={t.collection.categories[category]}>
+										{#each products.filter((product) => product.category === category) as { code } (code)}
+											<option value={code}>{code}</option>
+										{/each}
+									</optgroup>
+								{/each}
 							</select>
 						</div>
 					</div>

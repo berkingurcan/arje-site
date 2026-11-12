@@ -1,11 +1,11 @@
-import type { ProductId } from '$lib/media';
+import type { ProductCategory, ProductId } from '$lib/media';
 
 /** Türkçe — varsayılan dil. */
 const tr = {
 	meta: {
-		title: 'ARJE — Mimar Arzu Gürcan | Tasarım Ev Objeleri',
+		title: 'ARJE — Mimar Arzu Gürcan | Mekânlarınız İçin Tasarım Objeleri',
 		description:
-			'ARJE, Mimar Arzu Gürcan imzalı butik bir tasarım evi. Heykelsi formlar, kalıcı çizgiler ve sessiz duruşlu ev objeleri.',
+			'ARJE, Mimar Arzu Gürcan imzalı bir tasarım stüdyosu. Mekânlarınız için heykelsi formlar, kalıcı çizgiler ve sessiz duruşlu objeler.',
 		ogLocale: 'tr_TR'
 	},
 	a11y: {
@@ -47,7 +47,7 @@ const tr = {
 	attribution: 'Mimar Arzu Gürcan',
 	attributionLead: 'Tasarım',
 	hero: {
-		eyebrow: 'Ev için tasarım objeleri',
+		eyebrow: 'Mekânlarınız için tasarım objeleri',
 		title: [
 			{ text: 'Sessiz' },
 			{ text: 'duruşlu', em: true },
@@ -72,7 +72,7 @@ const tr = {
 			},
 			{
 				word: 'Saklanır.',
-				text: 'Mevsimlik değil, kalıcı. Yıllar içinde evin hafızasına karışan nesneler.'
+				text: 'Mevsimlik değil, kalıcı. Yıllar içinde mekânlarınızın hafızasına karışan nesneler.'
 			}
 		]
 	},
@@ -83,22 +83,25 @@ const tr = {
 		status: 'Fiyat talep üzerine',
 		request: 'Bilgi isteyin',
 		swipe: 'Kaydırarak keşfedin',
-		items: {
-			masa: { type: 'Masa objesi', name: 'Masa', alt: 'Sarı çiçeklerle süslenmiş, kıvrımlı krem seramik obje' },
-			duvar: { type: 'Duvar apliği', name: 'Duvar', alt: 'Beyaz küreli, güneş ışınları gibi çizgili terrakota aplik' },
-			saksi: { type: 'Duvar saksısı', name: 'Saksı', alt: 'Benekli beyaz seramik levha üzerinde pembe çiçekli mavi saksı' },
-			kitap: { type: 'Kitap tutucu', name: 'Kitap', alt: 'Sarı çiçeklerle süslenmiş, şerit gibi kıvrılan benekli seramik' },
-			smallLeaf: { type: 'Seramik obje', name: 'Küçük Yaprak', alt: 'Altın renkli kenarlı, küçük yeşil seramik yaprak' },
-			heartLeaf: { type: 'Seramik obje', name: 'Kalp Yaprak', alt: 'Altın renkli kenarlı, kalp biçiminde yeşil seramik yaprak' },
-			terracottaFlower: { type: 'Seramik obje', name: 'Terrakota Çiçek', alt: 'Ortası beyaz küreli, çiçek biçiminde turuncu seramik' },
-			purplePlatter: { type: 'Dekoratif tabak', name: 'Mor Çiçekler', alt: 'Mor çiçek desenli, dalgalı kenarlı krem seramik tabak' },
-			longLeaf: { type: 'Dekoratif tabak', name: 'Uzun Yaprak', alt: 'Yeşil yaprak desenli, ince ve uzun seramik tabak' },
-			polkaDotVase: { type: 'Seramik vazo', name: 'Puantiyeli Vazo', alt: 'Beyaz puantiyeli, dalgalı beyaz ağızlı yeşil seramik vazo' },
-			cobaltLeaf: { type: 'Seramik obje', name: 'Kobalt Yaprak', alt: 'Yaprak damarları belirgin, kobalt mavisi seramik yaprak' },
-			bluePlatter: { type: 'Dekoratif tabak', name: 'Mavi Dallar', alt: 'Mavi yaprak desenli, altın renkli kenarlı krem seramik tabak' },
-			speckledWave: { type: 'Seramik obje', name: 'Benekli Dalga', alt: 'Ortası beyaz küreli, dalga biçiminde benekli seramik' },
-			creamLeaf: { type: 'Seramik obje', name: 'Krem Yaprak', alt: 'Ortası beyaz küreli, altın renkli kenarlı krem seramik yaprak' }
-		} satisfies Record<ProductId, { type: string; name: string; alt: string }>,
+		filterLabel: 'Ürün kategorileri',
+		all: 'Tümü',
+		categories: { sconce: 'Aplik', decor: 'Dekoratif obje', plate: 'Tabak' } satisfies Record<ProductCategory, string>,
+		productAlt: {
+			masa: 'Sarı çiçeklerle süslenmiş, kıvrımlı krem seramik obje',
+			duvar: 'Beyaz küreli, güneş ışınları gibi çizgili terrakota aplik',
+			saksi: 'Benekli beyaz seramik levha üzerinde pembe çiçekli mavi saksı',
+			kitap: 'Sarı çiçeklerle süslenmiş, şerit gibi kıvrılan benekli seramik',
+			smallLeaf: 'Altın renkli kenarlı, küçük yeşil seramik yaprak',
+			heartLeaf: 'Altın renkli kenarlı, kalp biçiminde yeşil seramik yaprak',
+			terracottaFlower: 'Ortası beyaz küreli, çiçek biçiminde turuncu seramik',
+			purplePlatter: 'Mor çiçek desenli, dalgalı kenarlı krem seramik tabak',
+			longLeaf: 'Yeşil yaprak desenli, ince ve uzun seramik tabak',
+			polkaDotVase: 'Beyaz puantiyeli, dalgalı beyaz ağızlı yeşil seramik vazo',
+			cobaltLeaf: 'Yaprak damarları belirgin, kobalt mavisi seramik yaprak',
+			bluePlatter: 'Mavi yaprak desenli, altın renkli kenarlı krem seramik tabak',
+			speckledWave: 'Ortası beyaz küreli, dalga biçiminde benekli seramik',
+			creamLeaf: 'Ortası beyaz küreli, altın renkli kenarlı krem seramik yaprak'
+		} satisfies Record<ProductId, string>,
 		endTitle: 'Koleksiyonun tamamı',
 		endText: 'Yeni parçalar eklendikçe ilk siz haberdar olun.',
 		endCta: 'Haber verin'
@@ -110,7 +113,7 @@ const tr = {
 		pillars: [
 			{ title: 'Oran', text: 'Mimari bir disiplinle kurulan ölçü ve denge.' },
 			{ title: 'Malzeme', text: 'Dokusu, ağırlığı ve zamanla kazandığı karakter için seçilen yüzeyler.' },
-			{ title: 'İmza', text: 'Her parça, tasarımcısının eve dair kişisel bakışını taşır.' }
+			{ title: 'İmza', text: 'Her parça, tasarımcısının mekâna dair kişisel bakışını taşır.' }
 		],
 		caption: 'Işık, gölge ve form'
 	},
@@ -120,14 +123,14 @@ const tr = {
 	trade: {
 		eyebrow: 'Mimarlar ve iç mimarlar için',
 		title: [{ text: 'Projeniz için' }, { text: 'birlikte seçelim.', em: true }],
-		lead: 'Konut ve butik otel projelerinde mimarlar ve iç mimarlarla birlikte çalışmayı önemsiyoruz. Projenizi anlatın; size uygun parçaları ölçü ve malzeme bilgileriyle paylaşalım.',
+		lead: 'Projelerinizde sizinle birlikte çalışmayı önemsiyoruz. Projenizi anlatın, size uygun parçaları ölçü ve malzeme bilgileriyle paylaşalım.',
 		topics: ['Projeye özel seçki', 'Ölçü ve malzeme bilgisi', 'Teslim süresi ve stok durumu'],
 		form: {
 			name: 'Ad soyad',
 			email: 'İş e-postası',
 			studio: 'Stüdyo / firma',
 			projectType: 'Proje türü',
-			projectTypes: ['Konut', 'Butik otel', 'Ofis / ticari mekân', 'Diğer'],
+			projectTypes: ['Konut', 'Otel', 'Kafe / restoran', 'Ofis / ticari mekân', 'Diğer'],
 			object: 'İlgilendiğiniz parça',
 			objectAny: 'Henüz karar vermedim',
 			message: 'Mesajınız',

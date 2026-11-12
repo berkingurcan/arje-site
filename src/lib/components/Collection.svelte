@@ -1,13 +1,19 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
 	import Media from './Media.svelte';
 	import Icon from './Icon.svelte';
 	import Monogram from '$lib/brand/Monogram.svelte';
-	import { products } from '$lib/media';
+	import { productCategories, products, type ProductCategory, type ProductCode } from '$lib/media';
 	import { enquiry } from '$lib/enquiry.svelte';
 	import type { Dict } from '$lib/i18n';
 
 	let { t }: { t: Dict } = $props();
+
+	const categoryFilters = ['all', ...productCategories] as const;
+	let selectedCategory = $state<ProductCategory | 'all'>('all');
+	const visibleProducts = $derived(
+		selectedCategory === 'all' ? products : products.filter(({ category }) => category === selectedCategory)
+	);
 
 	let track: HTMLUListElement | undefined = $state();
 	let progress = $state(0);
@@ -38,8 +44,16 @@
 		track.scrollBy({ left: dir * w, behavior: 'smooth' });
 	}
 
-	function ask(name: string) {
-		enquiry.object = name;
+	async function selectCategory(category: typeof selectedCategory) {
+		if (category === selectedCategory) return;
+		selectedCategory = category;
+		await tick();
+		track?.scrollTo({ left: 0, behavior: 'instant' });
+		measure();
+	}
+
+	function ask(code: ProductCode | '') {
+		enquiry.object = code;
 	}
 </script>
 
@@ -59,26 +73,38 @@
 		</div>
 	</div>
 
-	<ul class="track" bind:this={track} onscroll={measure} aria-label={t.collection.title}>
-		{#each products as { id, photo } (id)}
-			{@const item = t.collection.items[id]}
-			{@const label = `${item.type}, ${item.name}`}
+	<div class="container filters" role="group" aria-label={t.collection.filterLabel}>
+		{#each categoryFilters as category (category)}
+			<button
+				type="button"
+				aria-pressed={selectedCategory === category}
+				aria-controls="collection-products"
+				onclick={() => selectCategory(category)}
+			>
+				{category === 'all' ? t.collection.all : t.collection.categories[category]}
+			</button>
+		{/each}
+	</div>
+
+	<ul id="collection-products" class="track" bind:this={track} onscroll={measure} aria-label={t.collection.title}>
+		{#each visibleProducts as { id, code, category, photo } (id)}
+			{@const categoryLabel = t.collection.categories[category]}
 			<li class="card">
 				<article aria-labelledby="obj-{id}">
 					<div class="card-media">
 						<Media
 							item={photo}
-							alt={item.alt}
+							alt={t.collection.productAlt[id]}
 							ratio={4 / 5}
 							sizes="(min-width: 64rem) 28vw, (min-width: 48rem) 45vw, 80vw"
 						/>
 					</div>
 					<div class="card-body">
-						<h3 id="obj-{id}" class="name">{item.name}</h3>
-						<p class="type">{item.type}</p>
+						<h3 id="obj-{id}" class="name">{code}</h3>
+						<p class="type">{categoryLabel}</p>
 						<p class="status">{t.collection.status}</p>
-						<a class="req" href="#trade" onclick={() => ask(`${item.type} — ${item.name}`)}>
-							{t.collection.request}<span class="sr-only">: {label}</span>
+						<a class="req" href="#trade" onclick={() => ask(code)}>
+							{t.collection.request}<span class="sr-only">: {categoryLabel}, {code}</span>
 						</a>
 					</div>
 				</article>
@@ -111,7 +137,7 @@
 	.head {
 		display: grid;
 		gap: 1.5rem;
-		margin-bottom: clamp(2.25rem, 5vw, 3.75rem);
+		margin-bottom: 1.5rem;
 	}
 	.note {
 		max-width: 24rem;
@@ -146,6 +172,29 @@
 	.arrow-btn:disabled {
 		opacity: 0.3;
 		cursor: default;
+	}
+
+	.filters {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-bottom: clamp(1.25rem, 3vw, 2rem);
+	}
+	.filters button {
+		min-height: var(--target);
+		padding-inline: 1rem;
+		border-radius: 999px;
+		box-shadow: inset 0 0 0 1px var(--line-strong);
+		color: var(--ink);
+		font-size: var(--fs-small);
+	}
+	.filters button:hover {
+		box-shadow: inset 0 0 0 1px currentColor;
+	}
+	.filters button[aria-pressed='true'] {
+		background: var(--ink);
+		color: var(--bg);
+		box-shadow: none;
 	}
 
 	/* Scroll-snap track, aligned to the container edge */
